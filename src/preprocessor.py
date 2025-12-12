@@ -16,9 +16,11 @@ from dataclasses import dataclass
 import pandas as pd
 from tqdm import tqdm
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
-from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
+# from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
+from nlp_id.stopword import StopWord
 from gensim.models.phrases import Phrases, Phraser
 from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords as NLTKStopwords
 import nltk
 
 from src.config import Settings, get_settings
@@ -31,6 +33,10 @@ logger = logging.getLogger(__name__)
 # Ensure NLTK data is downloaded
 def ensure_nltk_data() -> None:
     """Download required NLTK data if not present."""
+    try:
+        nltk.data.find('stopwords')
+    except LookupError:
+        nltk.download('stopwords', quiet=True)
     try:
         nltk.data.find('tokenizers/punkt')
     except LookupError:
@@ -119,6 +125,12 @@ class IndonesianPreprocessor:
         
         # Initialize Sastrawi components
         self._init_sastrawi()
+
+        # Initialize NLP-ID components
+        self._init_nlp_id()
+
+        # Initialize NLTK components
+        self._init_nltk()
         
         # Build stopwords set
         self.stopwords = self._build_stopwords(custom_stopwords)
@@ -131,21 +143,31 @@ class IndonesianPreprocessor:
         self.stats = PreprocessingStats()
         
         logger.info(f"Preprocessor initialized (stemming={self._use_stemming})")
+
+    def _init_nltk(self):
+        self._nltk_stopwords = set(NLTKStopwords.words('english'))
+
+    def _init_nlp_id(self) -> None:
+        # Get default stopwords from nlp-id
+        stopword = StopWord()
+        self._nlp_id_stopwords = set(stopword.get_stopword())
     
     def _init_sastrawi(self) -> None:
         """Initialize Sastrawi stemmer and stopword remover."""
         # Stemmer
         stemmer_factory = StemmerFactory()
-        self._stemmer = stemmer_factory.createStemmer()
+        self._stemmer = stemmer_factory.create_stemmer()
         
         # Get default stopwords from Sastrawi
-        stopword_factory = StopWordRemoverFactory()
-        self._sastrawi_stopwords = set(stopword_factory.getStopWords())
+        # stopword_factory = StopWordRemoverFactory()
+        # self._sastrawi_stopwords = set(stopword_factory.getStopWords())
     
     def _build_stopwords(self, custom_stopwords: Optional[set[str]] = None) -> set[str]:
         """Build complete stopwords set."""
         stopwords = set()
-        stopwords.update(self._sastrawi_stopwords)
+        # stopwords.update(self._sastrawi_stopwords)
+        stopwords.update(self._nltk_stopwords)
+        stopwords.update(self._nlp_id_stopwords)
         stopwords.update(self.ADDITIONAL_STOPWORDS)
         
         if custom_stopwords:

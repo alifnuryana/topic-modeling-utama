@@ -64,7 +64,7 @@ class Settings(BaseSettings):
         description="Number of records per batch"
     )
     oaipmh_delay_seconds: float = Field(
-        default=0.2,
+        default=0,
         description="Delay between requests to avoid rate limiting"
     )
     
