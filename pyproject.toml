@@ -1,0 +1,50 @@
+[project]
+name = "topic-modeling-utama"
+version = "0.1.0"
+description = "Topic Modeling using LDA for Academic Paper Metadata Analysis"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    # Data Collection
+    "sickle>=0.7.0",
+    "cloudscraper>=1.2.71",
+    
+    # Data Processing
+    "pandas>=2.1.0",
+    "numpy>=1.26.0",
+    
+    # NLP
+    "gensim>=4.3.0",
+    "nltk>=3.8.0",
+    "PySastrawi>=1.2.0",
+    "nlp-id>=0.1.0",
+    
+    # Visualization
+    "matplotlib>=3.8.0",
+    "seaborn>=0.13.0",
+    "plotly>=5.18.0",
+    "wordcloud>=1.9.0",
+    "pyLDAvis>=3.4.0",
+    
+    # Dashboard
+    "streamlit>=1.29.0",
+    "streamlit-option-menu>=0.3.6",
+    
+    # Notebooks
+    "jupyter>=1.0.0",
+    "ipywidgets>=8.1.0",
+    
+    # Type Safety & Config
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    
+    # Progress tracking
+    "tqdm>=4.66.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
