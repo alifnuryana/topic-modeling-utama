@@ -1,0 +1,11 @@
+{
+  "num_topics": 20,
+  "num_documents": 12014,
+  "vocabulary_size": 8744,
+  "passes": 15,
+  "iterations": 200,
+  "alpha": "symmetric",
+  "eta": null,
+  "coherence_score": 0.5400293070579839,
+  "training_time_seconds": 18.436049699783325
+}

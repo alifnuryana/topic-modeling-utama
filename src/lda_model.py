@@ -40,12 +40,14 @@ class TopicInfo:
         return [word for word, _ in self.words]
     
     def to_dict(self) -> dict[str, Any]:
-        """Convert to dictionary."""
+        """Convert to dictionary with JSON-serializable types."""
+        # Convert numpy float32 to native Python float for JSON serialization
+        words_serializable = [(word, float(weight)) for word, weight in self.words]
         return {
             "topic_id": self.topic_id,
-            "words": self.words,
+            "words": words_serializable,
             "label": self.label,
-            "coherence": self.coherence,
+            "coherence": float(self.coherence),
             "top_words": self.top_words,
         }
 

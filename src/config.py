@@ -80,11 +80,11 @@ class Settings(BaseSettings):
         description="Maximum word length to keep after preprocessing"
     )
     min_doc_length: int = Field(
-        default=10,
+        default=30,
         description="Minimum document length (in tokens) to include"
     )
     use_stemming: bool = Field(
-        default=True,
+        default=False,
         description="Whether to apply stemming (PySastrawi)"
     )
     use_bigrams: bool = Field(
@@ -96,11 +96,11 @@ class Settings(BaseSettings):
         description="Whether to detect and use trigrams"
     )
     bigram_min_count: int = Field(
-        default=5,
+        default=20,
         description="Minimum count for bigram detection"
     )
     trigram_min_count: int = Field(
-        default=3,
+        default=10,
         description="Minimum count for trigram detection"
     )
     
@@ -108,7 +108,7 @@ class Settings(BaseSettings):
     # LDA Model Settings
     # ==========================================================================
     lda_num_topics: int = Field(
-        default=10,
+        default=20,
         description="Number of topics for LDA model"
     )
     lda_passes: int = Field(
@@ -116,11 +116,11 @@ class Settings(BaseSettings):
         description="Number of passes through the corpus during training"
     )
     lda_iterations: int = Field(
-        default=400,
+        default=200,
         description="Maximum number of iterations per document"
     )
     lda_chunksize: int = Field(
-        default=100,
+        default=300,
         description="Number of documents per training chunk"
     )
     lda_alpha: str = Field(
@@ -144,7 +144,7 @@ class Settings(BaseSettings):
     # Dictionary Settings
     # ==========================================================================
     dict_no_below: int = Field(
-        default=5,
+        default=10,
         description="Minimum document frequency for words"
     )
     dict_no_above: float = Field(

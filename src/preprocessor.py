@@ -317,7 +317,7 @@ class IndonesianPreprocessor:
         
         # Tokenize
         tokens = self.tokenize(cleaned)
-        
+
         # Remove stopwords
         tokens = self.remove_stopwords(tokens)
         
