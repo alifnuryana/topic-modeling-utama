@@ -59,6 +59,10 @@ class Settings(BaseSettings):
         default="oai_dc",
         description="Metadata format prefix (Dublin Core)"
     )
+    oaipmh_set_spec: Optional[str] = Field(
+        default="com_123456789_15",
+        description="Set specification for harvesting (if any)"
+    )
     oaipmh_batch_size: int = Field(
         default=100,
         description="Number of records per batch"
@@ -66,6 +70,10 @@ class Settings(BaseSettings):
     oaipmh_delay_seconds: float = Field(
         default=0,
         description="Delay between requests to avoid rate limiting"
+    )
+    oaipmh_max_records: Optional[int] = Field(
+        default=None,
+        description="Maximum number of records to harvest (None for all)"
     )
     
     # ==========================================================================
@@ -120,7 +128,7 @@ class Settings(BaseSettings):
         description="Maximum number of iterations per document"
     )
     lda_chunksize: int = Field(
-        default=1000,
+        default=3000,
         description="Number of documents per training chunk"
     )
     lda_alpha: str = Field(
@@ -136,7 +144,7 @@ class Settings(BaseSettings):
         description="Random seed for reproducibility"
     )
     lda_workers: int = Field(
-        default=4,
+        default=6,
         description="Number of worker threads for training"
     )
     

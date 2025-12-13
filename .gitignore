@@ -49,9 +49,9 @@ models/*.mm
 models/*.mm.*
 
 # Output files
-outputs/*.png
-outputs/*.html
-outputs/*.csv
+#outputs/*.png
+#outputs/*.html
+#outputs/*.csv
 
 # Environment
 .env

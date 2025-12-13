@@ -3,327 +3,327 @@
     "topic_id": 0,
     "words": [
       [
+        "penjualan",
+        0.031036479398608208
+      ],
+      [
         "biaya",
-        0.04391317069530487
+        0.02631765604019165
       ],
       [
         "produksi",
-        0.03730868548154831
+        0.021701864898204803
       ],
       [
         "produk",
-        0.015669401735067368
-      ],
-      [
-        "persediaan",
-        0.013453212566673756
-      ],
-      [
-        "bahan_baku",
-        0.012887720949947834
+        0.01712474599480629
       ],
       [
         "pengendalian",
-        0.011518329381942749
+        0.014146077446639538
       ],
       [
-        "biaya_produksi",
-        0.01089161541312933
+        "persediaan",
+        0.009509977884590626
+      ],
+      [
+        "bahan_baku",
+        0.0077628884464502335
       ],
       [
         "barang",
-        0.010541760362684727
+        0.007708834018558264
       ],
       [
-        "mesin",
-        0.010326912626624107
+        "sistem",
+        0.0076515693217515945
+      ],
+      [
+        "aktivitas",
+        0.007571511436253786
       ],
       [
         "perencanaan",
-        0.010155335068702698
+        0.007540148217231035
       ],
       [
-        "harga_pokok",
-        0.007375262212008238
+        "biaya_produksi",
+        0.006540389731526375
       ],
       [
-        "standar",
-        0.00720776105299592
+        "mesin",
+        0.005712918471544981
       ],
       [
         "kualitas",
-        0.0068349335342645645
+        0.005176194477826357
       ],
       [
-        "total",
-        0.006585604045540094
+        "memadai",
+        0.004933633375912905
+      ],
+      [
+        "sistem_informasi",
+        0.0048925625160336494
+      ],
+      [
+        "harga_pokok",
+        0.004526077304035425
       ],
       [
         "menentukan",
-        0.006574883125722408
-      ],
-      [
-        "anggaran",
-        0.006028733681887388
-      ],
-      [
-        "perbaikan",
-        0.00583646772429347
-      ],
-      [
-        "efisiensi",
-        0.0058079189620912075
-      ],
-      [
-        "gudang",
-        0.005660999566316605
+        0.004512814339250326
       ],
       [
         "menghasilkan",
-        0.005397382192313671
+        0.004456758499145508
+      ],
+      [
+        "standar",
+        0.004113803151994944
       ]
     ],
-    "label": "Topic 0: biaya, produksi, produk",
+    "label": "Topic 0: penjualan, biaya, produksi",
     "coherence": 0.0,
     "top_words": [
+      "penjualan",
       "biaya",
       "produksi",
       "produk",
+      "pengendalian",
       "persediaan",
       "bahan_baku",
-      "pengendalian",
-      "biaya_produksi",
       "barang",
-      "mesin",
+      "sistem",
+      "aktivitas",
       "perencanaan",
-      "harga_pokok",
-      "standar",
+      "biaya_produksi",
+      "mesin",
       "kualitas",
-      "total",
+      "memadai",
+      "sistem_informasi",
+      "harga_pokok",
       "menentukan",
-      "anggaran",
-      "perbaikan",
-      "efisiensi",
-      "gudang",
-      "menghasilkan"
+      "menghasilkan",
+      "standar"
     ]
   },
   {
     "topic_id": 1,
     "words": [
       [
-        "konsumen",
-        0.04750196263194084
+        "karyawan",
+        0.07329768687486649
       ],
       [
-        "keputusan_pembelian",
-        0.035444919019937515
+        "kinerja_karyawan",
+        0.04709120839834213
       ],
       [
-        "kualitas_pelayanan",
-        0.025819081813097
+        "kinerja",
+        0.02649887278676033
       ],
       [
-        "produk",
-        0.021461063995957375
+        "disiplin_kerja",
+        0.02153920941054821
       ],
       [
-        "harga",
-        0.01953788287937641
+        "pegawai",
+        0.02075464464724064
       ],
       [
-        "kualitas_produk",
-        0.015572002157568932
+        "motivasi",
+        0.020282654091715813
       ],
       [
-        "minat_beli",
-        0.01546920370310545
+        "motivasi_kerja",
+        0.01770840585231781
       ],
       [
-        "positif",
-        0.014936205931007862
+        "kerja",
+        0.017611199989914894
       ],
       [
-        "responden",
-        0.01483672484755516
+        "kompensasi",
+        0.014294663444161415
       ],
       [
-        "store_atmosphere",
-        0.013452311977744102
+        "lingkungan_kerja",
+        0.013950200751423836
       ],
       [
-        "brand_image",
-        0.012138311751186848
+        "pelatihan",
+        0.0130371805280447
       ],
       [
-        "loyalitas_konsumen",
-        0.009888086467981339
+        "gaya_kepemimpinan",
+        0.013000057078897953
       ],
       [
-        "loyalitas_pelanggan",
-        0.009588575921952724
+        "manusia",
+        0.010848676785826683
       ],
       [
-        "kepuasan_konsumen",
-        0.009531267918646336
+        "kepuasan_kerja",
+        0.010843048803508282
       ],
       [
-        "ulang",
-        0.009224597364664078
+        "sumber_daya",
+        0.010733600705862045
       ],
       [
-        "citra_merek",
-        0.008763658814132214
+        "prestasi_kerja",
+        0.00971201527863741
       ],
       [
-        "kota",
-        0.008335696533322334
+        "organisasi",
+        0.008357570506632328
       ],
       [
-        "atribut_produk",
-        0.007755831815302372
+        "kompetensi",
+        0.007027594372630119
       ],
       [
-        "determinasi",
-        0.00701904296875
+        "verifikatif",
+        0.005586700048297644
       ],
       [
-        "niat_beli",
-        0.00692997220903635
+        "budaya_organisasi",
+        0.005459754262119532
       ]
     ],
-    "label": "Topic 1: konsumen, keputusan_pembelian, kualitas_pelayanan",
+    "label": "Topic 1: karyawan, kinerja_karyawan, kinerja",
     "coherence": 0.0,
     "top_words": [
-      "konsumen",
-      "keputusan_pembelian",
-      "kualitas_pelayanan",
-      "produk",
-      "harga",
-      "kualitas_produk",
-      "minat_beli",
-      "positif",
-      "responden",
-      "store_atmosphere",
-      "brand_image",
-      "loyalitas_konsumen",
-      "loyalitas_pelanggan",
-      "kepuasan_konsumen",
-      "ulang",
-      "citra_merek",
-      "kota",
-      "atribut_produk",
-      "determinasi",
-      "niat_beli"
+      "karyawan",
+      "kinerja_karyawan",
+      "kinerja",
+      "disiplin_kerja",
+      "pegawai",
+      "motivasi",
+      "motivasi_kerja",
+      "kerja",
+      "kompensasi",
+      "lingkungan_kerja",
+      "pelatihan",
+      "gaya_kepemimpinan",
+      "manusia",
+      "kepuasan_kerja",
+      "sumber_daya",
+      "prestasi_kerja",
+      "organisasi",
+      "kompetensi",
+      "verifikatif",
+      "budaya_organisasi"
     ]
   },
   {
     "topic_id": 2,
     "words": [
       [
-        "good_corporate",
-        0.03266894817352295
+        "modal_kerja",
+        0.022546028718352318
       ],
       [
-        "governance",
-        0.030906351283192635
+        "pendapatan_asli",
+        0.021833475679159164
       ],
       [
-        "keuangan",
-        0.018067436292767525
+        "kerja",
+        0.02082458697259426
       ],
       [
-        "manajemen_laba",
-        0.01552593894302845
+        "hotel",
+        0.01830052211880684
       ],
       [
-        "terdaftar_bursa",
-        0.014592496678233147
+        "koperasi",
+        0.016398312523961067
       ],
       [
-        "kebijakan_dividen",
-        0.013765675015747547
+        "piutang",
+        0.012810648418962955
       ],
       [
-        "ukuran",
-        0.013683086261153221
+        "pemerintah",
+        0.010139885358512402
       ],
       [
-        "profitabilitas",
-        0.013376742601394653
+        "lapangan",
+        0.010032154619693756
       ],
       [
-        "kinerja",
-        0.012144260108470917
+        "belanja",
+        0.009613941423594952
       ],
       [
-        "struktur_modal",
-        0.011353369802236557
+        "program",
+        0.00751076964661479
       ],
       [
-        "positif",
-        0.011082349345088005
+        "sumber",
+        0.007319826632738113
       ],
       [
-        "efek",
-        0.01097411010414362
+        "pad",
+        0.007108672987669706
       ],
       [
-        "kepemilikan_institusional",
-        0.010265577584505081
+        "sumber_penggunaan",
+        0.007054571993649006
       ],
       [
-        "pengujian",
-        0.010204955004155636
+        "modal",
+        0.006884440314024687
       ],
       [
-        "komite_audit",
-        0.008625146932899952
+        "jepang",
+        0.006345455069094896
       ],
       [
-        "bursa_efek",
-        0.008615542203187943
+        "perputaran_piutang",
+        0.005419125780463219
       ],
       [
-        "leverage",
-        0.008540146984159946
+        "pertumbuhan_ekonomi",
+        0.005338877439498901
       ],
       [
-        "diukur",
-        0.00850625615566969
+        "tugas",
+        0.005337805021554232
       ],
       [
-        "independen",
-        0.008484859019517899
+        "likuiditas",
+        0.005116765853017569
       ],
       [
-        "sampling",
-        0.007857638411223888
+        "bahasa_jepang",
+        0.005067151505500078
       ]
     ],
-    "label": "Topic 2: good_corporate, governance, keuangan",
+    "label": "Topic 2: modal_kerja, pendapatan_asli, kerja",
     "coherence": 0.0,
     "top_words": [
-      "good_corporate",
-      "governance",
-      "keuangan",
-      "manajemen_laba",
-      "terdaftar_bursa",
-      "kebijakan_dividen",
-      "ukuran",
-      "profitabilitas",
-      "kinerja",
-      "struktur_modal",
-      "positif",
-      "efek",
-      "kepemilikan_institusional",
-      "pengujian",
-      "komite_audit",
-      "bursa_efek",
-      "leverage",
-      "diukur",
-      "independen",
-      "sampling"
+      "modal_kerja",
+      "pendapatan_asli",
+      "kerja",
+      "hotel",
+      "koperasi",
+      "piutang",
+      "pemerintah",
+      "lapangan",
+      "belanja",
+      "program",
+      "sumber",
+      "pad",
+      "sumber_penggunaan",
+      "modal",
+      "jepang",
+      "perputaran_piutang",
+      "pertumbuhan_ekonomi",
+      "tugas",
+      "likuiditas",
+      "bahasa_jepang"
     ]
   },
   {
@@ -331,83 +331,83 @@
     "words": [
       [
         "sistem",
-        0.025717083364725113
+        0.023786885663866997
       ],
       [
         "aplikasi",
-        0.022354019805788994
+        0.023577028885483742
       ],
       [
         "informasi",
-        0.01785174570977688
+        0.017575964331626892
       ],
       [
         "media",
-        0.008236484602093697
+        0.01126084104180336
       ],
       [
-        "pengguna",
-        0.007355154026299715
-      ],
-      [
-        "sistem_informasi",
-        0.006216477602720261
-      ],
-      [
-        "masyarakat",
-        0.005735731218010187
-      ],
-      [
-        "teknologi",
-        0.0053057740442454815
+        "perancangan",
+        0.008553748019039631
       ],
       [
         "penggunaan",
-        0.004843545146286488
-      ],
-      [
-        "kerja",
-        0.004799570422619581
-      ],
-      [
-        "widyatama",
-        0.004777741618454456
-      ],
-      [
-        "pembuatan",
-        0.004701957106590271
+        0.007242162711918354
       ],
       [
         "jaringan",
-        0.004665347747504711
+        0.007076534908264875
       ],
       [
-        "algoritma",
-        0.0044812471605837345
+        "teknologi",
+        0.006612077355384827
       ],
       [
-        "pengembangan",
-        0.004450937733054161
+        "layanan",
+        0.006309160031378269
       ],
       [
-        "diharapkan",
-        0.004393103066831827
+        "umkm",
+        0.006086047738790512
       ],
       [
-        "program",
-        0.004294179379940033
-      ],
-      [
-        "pengujian",
-        0.004254299681633711
+        "internet",
+        0.005836117547005415
       ],
       [
         "digital",
-        0.00415748730301857
+        0.005832416471093893
       ],
       [
-        "lapangan",
-        0.0041387747041881084
+        "video",
+        0.005564529448747635
+      ],
+      [
+        "game",
+        0.005295880138874054
+      ],
+      [
+        "air",
+        0.0052345977164804935
+      ],
+      [
+        "berbasis",
+        0.005047123413532972
+      ],
+      [
+        "online",
+        0.005025978200137615
+      ],
+      [
+        "bentuk",
+        0.004904004745185375
+      ],
+      [
+        "algoritma",
+        0.004898598417639732
+      ],
+      [
+        "desain",
+        0.004785377997905016
       ]
     ],
     "label": "Topic 3: sistem, aplikasi, informasi",
@@ -417,1221 +417,894 @@
       "aplikasi",
       "informasi",
       "media",
-      "pengguna",
-      "sistem_informasi",
-      "masyarakat",
-      "teknologi",
+      "perancangan",
       "penggunaan",
-      "kerja",
-      "widyatama",
-      "pembuatan",
       "jaringan",
-      "algoritma",
-      "pengembangan",
-      "diharapkan",
-      "program",
-      "pengujian",
+      "teknologi",
+      "layanan",
+      "umkm",
+      "internet",
       "digital",
-      "lapangan"
+      "video",
+      "game",
+      "air",
+      "berbasis",
+      "online",
+      "bentuk",
+      "algoritma",
+      "desain"
     ]
   },
   {
     "topic_id": 4,
     "words": [
       [
-        "keuangan",
-        0.06861400604248047
+        "profitabilitas",
+        0.016547756269574165
       ],
       [
-        "kinerja",
-        0.03368822857737541
+        "bursa_efek",
+        0.012154322117567062
       ],
       [
-        "laba",
-        0.02095860056579113
+        "independen",
+        0.010017250664532185
       ],
       [
-        "rasio",
-        0.020551647990942
+        "ukuran",
+        0.009728369303047657
       ],
       [
-        "modal_kerja",
-        0.014950593002140522
+        "roa",
+        0.009412327781319618
       ],
       [
-        "arus_kas",
-        0.013817639090120792
+        "kepatuhan_wajib",
+        0.007746732793748379
       ],
       [
-        "informasi",
-        0.011971399188041687
+        "sampling",
+        0.007555870804935694
       ],
       [
-        "kas",
-        0.011926194652915001
+        "purposive_sampling",
+        0.007490098476409912
       ],
       [
-        "koperasi",
-        0.011387794278562069
+        "non_performing",
+        0.006872416473925114
       ],
       [
-        "aktiva",
-        0.010301788337528706
+        "kebijakan_dividen",
+        0.006674530450254679
       ],
       [
-        "investasi",
-        0.010058771818876266
+        "ldr",
+        0.0063172271475195885
       ],
       [
-        "kondisi",
-        0.009007907472550869
+        "kepemilikan_institusional",
+        0.006216672249138355
       ],
       [
-        "modal",
-        0.008594177663326263
+        "wajib_pajak",
+        0.006059886422008276
       ],
       [
-        "usaha",
-        0.007751337252557278
+        "car",
+        0.006032697390764952
       ],
       [
-        "piutang",
-        0.006895052269101143
+        "diuji",
+        0.005972541403025389
       ],
       [
-        "kemampuan",
-        0.006704509723931551
+        "regresi_linear",
+        0.005914817098528147
       ],
       [
-        "aktivitas",
-        0.006650468800216913
+        "pajak",
+        0.005904552061110735
       ],
       [
-        "operasi",
-        0.006607756018638611
+        "pajak_pribadi",
+        0.005686862859874964
       ],
       [
-        "dana",
-        0.006155798211693764
+        "leverage",
+        0.005412031430751085
       ],
       [
-        "likuiditas",
-        0.005625666584819555
+        "bank",
+        0.00510040670633316
       ]
     ],
-    "label": "Topic 4: keuangan, kinerja, laba",
+    "label": "Topic 4: profitabilitas, bursa_efek, independen",
     "coherence": 0.0,
     "top_words": [
-      "keuangan",
-      "kinerja",
-      "laba",
-      "rasio",
-      "modal_kerja",
-      "arus_kas",
-      "informasi",
-      "kas",
-      "koperasi",
-      "aktiva",
-      "investasi",
-      "kondisi",
-      "modal",
-      "usaha",
-      "piutang",
-      "kemampuan",
-      "aktivitas",
-      "operasi",
-      "dana",
-      "likuiditas"
+      "profitabilitas",
+      "bursa_efek",
+      "independen",
+      "ukuran",
+      "roa",
+      "kepatuhan_wajib",
+      "sampling",
+      "purposive_sampling",
+      "non_performing",
+      "kebijakan_dividen",
+      "ldr",
+      "kepemilikan_institusional",
+      "wajib_pajak",
+      "car",
+      "diuji",
+      "regresi_linear",
+      "pajak",
+      "pajak_pribadi",
+      "leverage",
+      "bank"
     ]
   },
   {
     "topic_id": 5,
     "words": [
       [
-        "karya",
-        0.022295253351330757
+        "pajak",
+        0.05762095004320145
       ],
       [
-        "sosial",
-        0.016614360734820366
+        "wajib_pajak",
+        0.02527414634823799
       ],
       [
-        "film",
-        0.015632903203368187
+        "penerimaan_pajak",
+        0.021222790703177452
       ],
       [
-        "bahasa",
-        0.013004005886614323
+        "kas",
+        0.02079872600734234
       ],
       [
-        "pegawai",
-        0.012821285054087639
+        "pendapatan",
+        0.018165767192840576
       ],
       [
-        "fungsi",
-        0.012080507352948189
+        "kepatuhan_wajib",
+        0.017675237730145454
       ],
       [
-        "novel",
-        0.01038461271673441
+        "anggaran",
+        0.017201825976371765
       ],
       [
-        "kalimat",
-        0.009760099463164806
+        "badan",
+        0.011226107366383076
       ],
       [
-        "bentuk",
-        0.008654492907226086
+        "negara",
+        0.01035388559103012
       ],
       [
-        "mengidentifikasi",
-        0.008531568571925163
+        "kantor_pelayanan",
+        0.009716199710965157
       ],
       [
-        "tindak",
-        0.008506941609084606
+        "perpajakan",
+        0.009427712298929691
       ],
       [
-        "skripsi",
-        0.008261151611804962
+        "pajak_penghasilan",
+        0.008872385136783123
       ],
       [
-        "dianalisis",
-        0.007782310247421265
+        "pemerintah",
+        0.008774751797318459
       ],
       [
-        "skripsi_berjudul",
-        0.007694634608924389
+        "penerimaan",
+        0.007376976776868105
       ],
       [
-        "penggunaan",
-        0.007578408345580101
+        "penyusunan_anggaran",
+        0.007332474924623966
+      ],
+      [
+        "pajak_pratama",
+        0.006541892420500517
+      ],
+      [
+        "pembayaran",
+        0.006003492046147585
+      ],
+      [
+        "pemeriksaan_pajak",
+        0.00595376081764698
+      ],
+      [
+        "kontribusi",
+        0.005731072276830673
       ],
       [
         "sumber",
-        0.006823388859629631
-      ],
-      [
-        "tindak_ilokusi",
-        0.006684149615466595
-      ],
-      [
-        "kategori",
-        0.006681698374450207
-      ],
-      [
-        "tipe",
-        0.006597133353352547
-      ],
-      [
-        "strategi",
-        0.006506037432700396
+        0.005595920141786337
       ]
     ],
-    "label": "Topic 5: karya, sosial, film",
+    "label": "Topic 5: pajak, wajib_pajak, penerimaan_pajak",
     "coherence": 0.0,
     "top_words": [
-      "karya",
-      "sosial",
-      "film",
-      "bahasa",
-      "pegawai",
-      "fungsi",
-      "novel",
-      "kalimat",
-      "bentuk",
-      "mengidentifikasi",
-      "tindak",
-      "skripsi",
-      "dianalisis",
-      "skripsi_berjudul",
-      "penggunaan",
-      "sumber",
-      "tindak_ilokusi",
-      "kategori",
-      "tipe",
-      "strategi"
+      "pajak",
+      "wajib_pajak",
+      "penerimaan_pajak",
+      "kas",
+      "pendapatan",
+      "kepatuhan_wajib",
+      "anggaran",
+      "badan",
+      "negara",
+      "kantor_pelayanan",
+      "perpajakan",
+      "pajak_penghasilan",
+      "pemerintah",
+      "penerimaan",
+      "penyusunan_anggaran",
+      "pajak_pratama",
+      "pembayaran",
+      "pemeriksaan_pajak",
+      "kontribusi",
+      "sumber"
     ]
   },
   {
     "topic_id": 6,
     "words": [
       [
-        "bank",
-        0.05474724620580673
+        "karyawan",
+        0.02988402731716633
       ],
       [
-        "saham",
-        0.019992388784885406
+        "proyek",
+        0.014473188668489456
       ],
       [
-        "risiko",
-        0.014717180281877518
+        "karya",
+        0.014119305647909641
       ],
       [
-        "profitabilitas",
-        0.012514584697782993
+        "film",
+        0.012306958436965942
       ],
       [
-        "bank_syariah",
-        0.011814889498054981
+        "gaya_kepemimpinan",
+        0.010941971093416214
       ],
       [
-        "syariah",
-        0.011455300264060497
+        "produktivitas_kerja",
+        0.010714223608374596
       ],
       [
-        "model",
-        0.010650776326656342
+        "fungsi",
+        0.008150715380907059
       ],
       [
-        "pengujian",
-        0.010470133274793625
+        "aktiva",
+        0.007761871442198753
       ],
       [
-        "roa",
-        0.010269379243254662
+        "strategi",
+        0.00772889843210578
       ],
       [
-        "pembiayaan",
-        0.009615117684006691
+        "promosi_jabatan",
+        0.007641573436558247
       ],
       [
-        "perbankan",
-        0.009438052773475647
+        "bentuk",
+        0.0074136215262115
       ],
       [
-        "keuangan",
-        0.008997653611004353
+        "sosial",
+        0.00736958347260952
       ],
       [
-        "kredit",
-        0.008815895766019821
+        "perspektif",
+        0.006981592625379562
       ],
       [
-        "non_performing",
-        0.008716333657503128
+        "tindak",
+        0.0068605518899858
       ],
       [
-        "investasi",
-        0.008599227294325829
+        "arus_kas",
+        0.006796960718929768
       ],
       [
-        "negara",
-        0.006852514110505581
+        "penggunaan",
+        0.006636767648160458
       ],
       [
-        "suku_bunga",
-        0.006542907562106848
+        "kalimat",
+        0.006620845757424831
       ],
       [
-        "investor",
-        0.005955791100859642
-      ],
-      [
-        "inflasi",
-        0.005700129549950361
+        "novel",
+        0.006553859915584326
       ],
       [
         "kinerja",
-        0.005671199876815081
+        0.006263920571655035
+      ],
+      [
+        "mengidentifikasi",
+        0.005876938812434673
       ]
     ],
-    "label": "Topic 6: bank, saham, risiko",
+    "label": "Topic 6: karyawan, proyek, karya",
     "coherence": 0.0,
     "top_words": [
-      "bank",
-      "saham",
-      "risiko",
-      "profitabilitas",
-      "bank_syariah",
-      "syariah",
-      "model",
-      "pengujian",
-      "roa",
-      "pembiayaan",
-      "perbankan",
-      "keuangan",
-      "kredit",
-      "non_performing",
-      "investasi",
-      "negara",
-      "suku_bunga",
-      "investor",
-      "inflasi",
-      "kinerja"
+      "karyawan",
+      "proyek",
+      "karya",
+      "film",
+      "gaya_kepemimpinan",
+      "produktivitas_kerja",
+      "fungsi",
+      "aktiva",
+      "strategi",
+      "promosi_jabatan",
+      "bentuk",
+      "sosial",
+      "perspektif",
+      "tindak",
+      "arus_kas",
+      "penggunaan",
+      "kalimat",
+      "novel",
+      "kinerja",
+      "mengidentifikasi"
     ]
   },
   {
     "topic_id": 7,
     "words": [
       [
-        "penjualan",
-        0.03907980024814606
+        "keuangan",
+        0.10532761365175247
       ],
       [
-        "manajemen",
-        0.022223811596632004
+        "kinerja",
+        0.05326823890209198
       ],
       [
-        "akuntansi",
-        0.021119773387908936
-      ],
-      [
-        "sistem",
-        0.0204787515103817
-      ],
-      [
-        "sistem_informasi",
-        0.01953638531267643
-      ],
-      [
-        "pengendalian",
-        0.0170313511043787
-      ],
-      [
-        "memadai",
-        0.016242146492004395
-      ],
-      [
-        "pengendalian_internal",
-        0.015063023194670677
-      ],
-      [
-        "efektivitas",
-        0.013538411818444729
-      ],
-      [
-        "aktivitas",
-        0.012572848238050938
-      ],
-      [
-        "peranan",
-        0.011020549573004246
-      ],
-      [
-        "internal",
-        0.009912701323628426
-      ],
-      [
-        "efektif",
-        0.009620380587875843
-      ],
-      [
-        "kas",
-        0.008603611961007118
+        "bank",
+        0.018513040617108345
       ],
       [
         "informasi",
-        0.00836581364274025
+        0.012614808976650238
       ],
       [
-        "menunjang_efektivitas",
-        0.007892685011029243
+        "kondisi",
+        0.007679841015487909
       ],
       [
-        "pengendalian_intern",
-        0.007279929239302874
+        "lingkungan",
+        0.0061118220910429955
       ],
       [
-        "efektivitas_pengendalian",
-        0.007216716185212135
+        "pemerintah",
+        0.0059449332766234875
       ],
       [
-        "operasional",
-        0.006845800671726465
+        "investasi",
+        0.005565452389419079
       ],
       [
-        "fungsi",
-        0.00630733510479331
+        "syariah",
+        0.005344829987734556
+      ],
+      [
+        "dana",
+        0.005132897756993771
+      ],
+      [
+        "bank_syariah",
+        0.0051046740263700485
+      ],
+      [
+        "pengambilan_keputusan",
+        0.004988744854927063
+      ],
+      [
+        "aktivitas",
+        0.004914737306535244
+      ],
+      [
+        "profitabilitas",
+        0.004826207645237446
+      ],
+      [
+        "aset",
+        0.004807746037840843
+      ],
+      [
+        "telekomunikasi",
+        0.004451338201761246
+      ],
+      [
+        "kemampuan",
+        0.004344307351857424
+      ],
+      [
+        "menilai_kinerja",
+        0.004171171225607395
+      ],
+      [
+        "eva",
+        0.004017637111246586
+      ],
+      [
+        "likuiditas",
+        0.003872693283483386
       ]
     ],
-    "label": "Topic 7: penjualan, manajemen, akuntansi",
+    "label": "Topic 7: keuangan, kinerja, bank",
     "coherence": 0.0,
     "top_words": [
-      "penjualan",
-      "manajemen",
-      "akuntansi",
-      "sistem",
-      "sistem_informasi",
-      "pengendalian",
-      "memadai",
-      "pengendalian_internal",
-      "efektivitas",
-      "aktivitas",
-      "peranan",
-      "internal",
-      "efektif",
-      "kas",
+      "keuangan",
+      "kinerja",
+      "bank",
       "informasi",
-      "menunjang_efektivitas",
-      "pengendalian_intern",
-      "efektivitas_pengendalian",
-      "operasional",
-      "fungsi"
+      "kondisi",
+      "lingkungan",
+      "pemerintah",
+      "investasi",
+      "syariah",
+      "dana",
+      "bank_syariah",
+      "pengambilan_keputusan",
+      "aktivitas",
+      "profitabilitas",
+      "aset",
+      "telekomunikasi",
+      "kemampuan",
+      "menilai_kinerja",
+      "eva",
+      "likuiditas"
     ]
   },
   {
     "topic_id": 8,
     "words": [
       [
-        "keuangan",
-        0.04456907510757446
-      ],
-      [
-        "kualitas",
-        0.03665507957339287
-      ],
-      [
-        "kinerja",
-        0.03404981270432472
-      ],
-      [
-        "audit",
-        0.031190618872642517
-      ],
-      [
-        "pemerintah",
-        0.022683005779981613
-      ],
-      [
-        "auditor",
-        0.021324587985873222
-      ],
-      [
-        "sistem",
-        0.01496032252907753
-      ],
-      [
-        "kota",
-        0.01173386536538601
-      ],
-      [
-        "internal",
-        0.010947303846478462
-      ],
-      [
-        "akuntansi",
-        0.009889164939522743
-      ],
-      [
-        "responden",
-        0.009343027137219906
-      ],
-      [
-        "publik",
-        0.008166990242898464
-      ],
-      [
-        "akuntabilitas",
-        0.008050457574427128
-      ],
-      [
-        "positif",
-        0.007501767948269844
-      ],
-      [
-        "kuesioner",
-        0.007394751533865929
-      ],
-      [
-        "auditor_internal",
-        0.006563419476151466
-      ],
-      [
-        "pemerintahan",
-        0.006197406444698572
-      ],
-      [
-        "dinas",
-        0.006035683676600456
+        "audit_internal",
+        0.025817494839429855
       ],
       [
         "pengendalian_internal",
-        0.006023266818374395
+        0.02232414111495018
+      ],
+      [
+        "audit",
+        0.021273477002978325
+      ],
+      [
+        "kualitas",
+        0.021091138944029808
+      ],
+      [
+        "internal",
+        0.0189594104886055
+      ],
+      [
+        "pemerintah",
+        0.018852977082133293
+      ],
+      [
+        "sistem",
+        0.015975965186953545
+      ],
+      [
+        "auditor",
+        0.013946264050900936
+      ],
+      [
+        "governance",
+        0.013520251028239727
+      ],
+      [
+        "keuangan",
+        0.013410515151917934
+      ],
+      [
+        "efektivitas",
+        0.01279523316770792
+      ],
+      [
+        "good_corporate",
+        0.012718901969492435
+      ],
+      [
+        "kinerja",
+        0.012028556317090988
+      ],
+      [
+        "auditor_internal",
+        0.011408369056880474
+      ],
+      [
+        "pengendalian_intern",
+        0.009094997309148312
+      ],
+      [
+        "memadai",
+        0.008180339820683002
+      ],
+      [
+        "kuesioner",
+        0.0074200015515089035
       ],
       [
         "independen",
-        0.006006619893014431
+        0.007367131300270557
+      ],
+      [
+        "kecurangan",
+        0.0071398974396288395
+      ],
+      [
+        "efektivitas_pengendalian",
+        0.005664531607180834
       ]
     ],
-    "label": "Topic 8: keuangan, kualitas, kinerja",
+    "label": "Topic 8: audit_internal, pengendalian_internal, audit",
     "coherence": 0.0,
     "top_words": [
-      "keuangan",
-      "kualitas",
-      "kinerja",
-      "audit",
-      "pemerintah",
-      "auditor",
-      "sistem",
-      "kota",
-      "internal",
-      "akuntansi",
-      "responden",
-      "publik",
-      "akuntabilitas",
-      "positif",
-      "kuesioner",
-      "auditor_internal",
-      "pemerintahan",
-      "dinas",
+      "audit_internal",
       "pengendalian_internal",
-      "independen"
+      "audit",
+      "kualitas",
+      "internal",
+      "pemerintah",
+      "sistem",
+      "auditor",
+      "governance",
+      "keuangan",
+      "efektivitas",
+      "good_corporate",
+      "kinerja",
+      "auditor_internal",
+      "pengendalian_intern",
+      "memadai",
+      "kuesioner",
+      "independen",
+      "kecurangan",
+      "efektivitas_pengendalian"
     ]
   },
   {
     "topic_id": 9,
     "words": [
       [
-        "pemberian_kredit",
-        0.034992095082998276
+        "sistem_informasi",
+        0.024863634258508682
       ],
       [
-        "kredit",
-        0.029372939839959145
+        "sistem",
+        0.020153891295194626
       ],
       [
-        "quality",
-        0.014508021995425224
+        "karyawan",
+        0.012818465940654278
       ],
       [
-        "used",
-        0.013608802109956741
+        "informasi",
+        0.012080431915819645
       ],
       [
-        "effect",
-        0.011991667561233044
+        "manusia",
+        0.010425062850117683
       ],
       [
-        "consumer",
-        0.0101336520165205
+        "sumber_daya",
+        0.009862815961241722
       ],
       [
-        "results",
-        0.010052019730210304
+        "pegawai",
+        0.009393548592925072
       ],
       [
-        "means",
-        0.00896162074059248
+        "sesuai",
+        0.00807657279074192
       ],
       [
-        "good",
-        0.00882367230951786
+        "aplikasi",
+        0.008042734116315842
       ],
       [
-        "kredit_macet",
-        0.00875777192413807
+        "rekrutmen",
+        0.007436356972903013
       ],
       [
-        "variable",
-        0.008410921320319176
+        "tugas",
+        0.006880813743919134
       ],
       [
-        "level",
-        0.008237037807703018
+        "program",
+        0.006636589765548706
       ],
       [
-        "one",
-        0.007856065407395363
+        "pengembangan",
+        0.005752359051257372
       ],
       [
-        "employees",
-        0.0072831157594919205
+        "organisasi",
+        0.005548899527639151
       ],
       [
-        "employee",
-        0.0072752442210912704
+        "kerja",
+        0.004966243170201778
       ],
       [
-        "average",
-        0.007248046342283487
+        "gaji",
+        0.004948287270963192
       ],
       [
-        "bank_rakyat",
-        0.007041978184133768
+        "pekerjaan",
+        0.004523358773440123
       ],
       [
-        "information",
-        0.007030410226434469
+        "seleksi",
+        0.004384052939713001
       ],
       [
-        "variables",
-        0.00692826509475708
+        "penggajian",
+        0.004297328647226095
       ],
       [
-        "hypothesis",
-        0.0067268358543515205
+        "hambatan",
+        0.00414445623755455
       ]
     ],
-    "label": "Topic 9: pemberian_kredit, kredit, quality",
+    "label": "Topic 9: sistem_informasi, sistem, karyawan",
     "coherence": 0.0,
     "top_words": [
-      "pemberian_kredit",
-      "kredit",
-      "quality",
-      "used",
-      "effect",
-      "consumer",
-      "results",
-      "means",
-      "good",
-      "kredit_macet",
-      "variable",
-      "level",
-      "one",
-      "employees",
-      "employee",
-      "average",
-      "bank_rakyat",
-      "information",
-      "variables",
-      "hypothesis"
+      "sistem_informasi",
+      "sistem",
+      "karyawan",
+      "informasi",
+      "manusia",
+      "sumber_daya",
+      "pegawai",
+      "sesuai",
+      "aplikasi",
+      "rekrutmen",
+      "tugas",
+      "program",
+      "pengembangan",
+      "organisasi",
+      "kerja",
+      "gaji",
+      "pekerjaan",
+      "seleksi",
+      "penggajian",
+      "hambatan"
     ]
   },
   {
     "topic_id": 10,
     "words": [
       [
-        "pajak",
-        0.06474215537309647
+        "harga_saham",
+        0.03267776593565941
       ],
       [
-        "audit_internal",
-        0.04654831066727638
+        "saham",
+        0.02244214341044426
       ],
       [
-        "wajib_pajak",
-        0.03311988338828087
+        "bursa_efek",
+        0.020790956914424896
       ],
       [
-        "kepatuhan_wajib",
-        0.028048448264598846
+        "laba",
+        0.01913464441895485
       ],
       [
-        "penerimaan_pajak",
-        0.023359939455986023
+        "return_saham",
+        0.013475915417075157
       ],
       [
-        "auditor_internal",
-        0.01226913370192051
+        "profitabilitas",
+        0.012614211067557335
       ],
       [
-        "kantor_pelayanan",
-        0.012082017958164215
+        "investasi",
+        0.010575037449598312
       ],
       [
-        "perpajakan",
-        0.010588823817670345
+        "investor",
+        0.010046121664345264
       ],
       [
-        "pengendalian_internal",
-        0.01021789014339447
+        "model",
+        0.009323765523731709
       ],
       [
-        "pencegahan_kecurangan",
-        0.010011128149926662
+        "earning_share",
+        0.009192531928420067
       ],
       [
-        "kota",
-        0.009868323802947998
+        "bei",
+        0.008823912590742111
       ],
       [
-        "orang_pribadi",
-        0.009820081293582916
+        "return_equity",
+        0.008777684532105923
       ],
       [
-        "pajak_orang",
-        0.009355748072266579
+        "keuangan",
+        0.008199494332075119
       ],
       [
-        "independen",
-        0.009317961521446705
+        "efek",
+        0.007775434292852879
       ],
       [
-        "pajak_penghasilan",
-        0.009208675473928452
+        "debt_equity",
+        0.007539988029748201
       ],
       [
-        "responden",
-        0.00866513792425394
+        "statistik",
+        0.0073426272720098495
       ],
       [
-        "pajak_pratama",
-        0.008642041124403477
+        "arus_kas",
+        0.0071373311802744865
       ],
       [
-        "diuji",
-        0.008215299807488918
+        "signifikansi",
+        0.007100560236722231
       ],
       [
-        "regresi_linear",
-        0.008019969798624516
+        "sampling",
+        0.006126359570771456
       ],
       [
-        "pribadi",
-        0.007934387773275375
+        "sekunder",
+        0.006053003016859293
       ]
     ],
-    "label": "Topic 10: pajak, audit_internal, wajib_pajak",
+    "label": "Topic 10: harga_saham, saham, bursa_efek",
     "coherence": 0.0,
     "top_words": [
-      "pajak",
-      "audit_internal",
-      "wajib_pajak",
-      "kepatuhan_wajib",
-      "penerimaan_pajak",
-      "auditor_internal",
-      "kantor_pelayanan",
-      "perpajakan",
-      "pengendalian_internal",
-      "pencegahan_kecurangan",
-      "kota",
-      "orang_pribadi",
-      "pajak_orang",
-      "independen",
-      "pajak_penghasilan",
-      "responden",
-      "pajak_pratama",
-      "diuji",
-      "regresi_linear",
-      "pribadi"
+      "harga_saham",
+      "saham",
+      "bursa_efek",
+      "laba",
+      "return_saham",
+      "profitabilitas",
+      "investasi",
+      "investor",
+      "model",
+      "earning_share",
+      "bei",
+      "return_equity",
+      "keuangan",
+      "efek",
+      "debt_equity",
+      "statistik",
+      "arus_kas",
+      "signifikansi",
+      "sampling",
+      "sekunder"
     ]
   },
   {
     "topic_id": 11,
     "words": [
       [
+        "konsumen",
+        0.04033278673887253
+      ],
+      [
+        "keputusan_pembelian",
+        0.02503904327750206
+      ],
+      [
         "produk",
-        0.025348635390400887
+        0.022528721019625664
+      ],
+      [
+        "kualitas_pelayanan",
+        0.01971416547894478
+      ],
+      [
+        "harga",
+        0.014586553908884525
       ],
       [
         "jasa",
-        0.021743007004261017
+        0.013747191056609154
       ],
       [
-        "pelanggan",
-        0.017697829753160477
-      ],
-      [
-        "pelayanan",
-        0.017328042536973953
+        "kredit",
+        0.012316707521677017
       ],
       [
         "promosi",
-        0.01704251393675804
+        0.011131816543638706
       ],
       [
-        "bisnis",
-        0.015632163733243942
+        "kualitas_produk",
+        0.010942105203866959
       ],
       [
-        "konsumen",
-        0.014357361942529678
+        "minat_beli",
+        0.01080445945262909
       ],
       [
-        "usaha",
-        0.013413817621767521
+        "store_atmosphere",
+        0.009473420679569244
       ],
       [
-        "pemasaran",
-        0.0108409458771348
+        "pelanggan",
+        0.009067936800420284
       ],
       [
-        "penjualan",
-        0.010828818194568157
+        "bank",
+        0.008246203884482384
       ],
       [
-        "proyek",
-        0.008958810940384865
-      ],
-      [
-        "strategi",
-        0.008553624153137207
-      ],
-      [
-        "pasar",
-        0.006339556071907282
-      ],
-      [
-        "pengembangan",
-        0.006290467455983162
+        "brand_image",
+        0.007941817864775658
       ],
       [
         "kualitas",
-        0.006267794407904148
+        0.007253499701619148
       ],
       [
-        "cabang",
-        0.006247831042855978
+        "loyalitas_konsumen",
+        0.007127922959625721
       ],
       [
-        "masyarakat",
-        0.0053867157548666
-      ],
-      [
-        "kopi",
-        0.004736674949526787
-      ],
-      [
-        "industri",
-        0.004735248163342476
-      ],
-      [
-        "volume_penjualan",
-        0.00452561117708683
-      ]
-    ],
-    "label": "Topic 11: produk, jasa, pelanggan",
-    "coherence": 0.0,
-    "top_words": [
-      "produk",
-      "jasa",
-      "pelanggan",
-      "pelayanan",
-      "promosi",
-      "bisnis",
-      "konsumen",
-      "usaha",
-      "pemasaran",
-      "penjualan",
-      "proyek",
-      "strategi",
-      "pasar",
-      "pengembangan",
-      "kualitas",
-      "cabang",
-      "masyarakat",
-      "kopi",
-      "industri",
-      "volume_penjualan"
-    ]
-  },
-  {
-    "topic_id": 12,
-    "words": [
-      [
-        "karyawan",
-        0.08148553222417831
-      ],
-      [
-        "kinerja_karyawan",
-        0.03978613018989563
-      ],
-      [
-        "kinerja",
-        0.022421376779675484
-      ],
-      [
-        "kerja",
-        0.01897365227341652
-      ],
-      [
-        "pegawai",
-        0.018840501084923744
-      ],
-      [
-        "disiplin_kerja",
-        0.018764397129416466
-      ],
-      [
-        "motivasi",
-        0.017832590267062187
-      ],
-      [
-        "motivasi_kerja",
-        0.016921477392315865
-      ],
-      [
-        "gaya_kepemimpinan",
-        0.015196963213384151
-      ],
-      [
-        "manusia",
-        0.013899060897529125
-      ],
-      [
-        "sumber_daya",
-        0.013818664476275444
-      ],
-      [
-        "pelatihan",
-        0.012379836291074753
-      ],
-      [
-        "kompensasi",
-        0.012378538027405739
-      ],
-      [
-        "lingkungan_kerja",
-        0.01191348023712635
-      ],
-      [
-        "kepuasan_kerja",
-        0.00923539511859417
-      ],
-      [
-        "prestasi_kerja",
-        0.008878747001290321
-      ],
-      [
-        "organisasi",
-        0.0083227027207613
-      ],
-      [
-        "positif",
-        0.007297911681234837
-      ],
-      [
-        "responden",
-        0.006757266353815794
-      ],
-      [
-        "orang",
-        0.006199096329510212
-      ]
-    ],
-    "label": "Topic 12: karyawan, kinerja_karyawan, kinerja",
-    "coherence": 0.0,
-    "top_words": [
-      "karyawan",
-      "kinerja_karyawan",
-      "kinerja",
-      "kerja",
-      "pegawai",
-      "disiplin_kerja",
-      "motivasi",
-      "motivasi_kerja",
-      "gaya_kepemimpinan",
-      "manusia",
-      "sumber_daya",
-      "pelatihan",
-      "kompensasi",
-      "lingkungan_kerja",
-      "kepuasan_kerja",
-      "prestasi_kerja",
-      "organisasi",
-      "positif",
-      "responden",
-      "orang"
-    ]
-  },
-  {
-    "topic_id": 13,
-    "words": [
-      [
-        "kota",
-        0.02579476684331894
-      ],
-      [
-        "pendapatan_asli",
-        0.02137395180761814
-      ],
-      [
-        "pendapatan",
-        0.019487455487251282
-      ],
-      [
-        "barat",
-        0.01910429447889328
-      ],
-      [
-        "pemerintah",
-        0.01601291261613369
-      ],
-      [
-        "provinsi_jawa",
-        0.014362817630171776
-      ],
-      [
-        "keuangan",
-        0.013056992553174496
-      ],
-      [
-        "masyarakat",
-        0.011316932737827301
+        "pemberian_kredit",
+        0.007012525573372841
       ],
       [
         "pelayanan",
-        0.01044999435544014
+        0.006924610119313002
       ],
       [
-        "pembangunan",
-        0.009837839752435684
+        "kepuasan_konsumen",
+        0.006844710558652878
       ],
       [
-        "belanja",
-        0.008714503608644009
-      ],
-      [
-        "dinas",
-        0.008714064955711365
-      ],
-      [
-        "sumber",
-        0.008579672314226627
-      ],
-      [
-        "rumah_sakit",
-        0.00852486677467823
-      ],
-      [
-        "anggaran",
-        0.008056385442614555
-      ],
-      [
-        "kabupaten",
-        0.00781779084354639
-      ],
-      [
-        "nomor",
-        0.0077322302386164665
-      ],
-      [
-        "sesuai",
-        0.007697601802647114
-      ],
-      [
-        "kesehatan",
-        0.007513878401368856
-      ],
-      [
-        "badan",
-        0.007479579653590918
+        "loyalitas_pelanggan",
+        0.006764320656657219
       ]
     ],
-    "label": "Topic 13: kota, pendapatan_asli, pendapatan",
+    "label": "Topic 11: konsumen, keputusan_pembelian, produk",
     "coherence": 0.0,
     "top_words": [
-      "kota",
-      "pendapatan_asli",
-      "pendapatan",
-      "barat",
-      "pemerintah",
-      "provinsi_jawa",
-      "keuangan",
-      "masyarakat",
+      "konsumen",
+      "keputusan_pembelian",
+      "produk",
+      "kualitas_pelayanan",
+      "harga",
+      "jasa",
+      "kredit",
+      "promosi",
+      "kualitas_produk",
+      "minat_beli",
+      "store_atmosphere",
+      "pelanggan",
+      "bank",
+      "brand_image",
+      "kualitas",
+      "loyalitas_konsumen",
+      "pemberian_kredit",
       "pelayanan",
-      "pembangunan",
-      "belanja",
-      "dinas",
-      "sumber",
-      "rumah_sakit",
-      "anggaran",
-      "kabupaten",
-      "nomor",
-      "sesuai",
-      "kesehatan",
-      "badan"
-    ]
-  },
-  {
-    "topic_id": 14,
-    "words": [
-      [
-        "harga_saham",
-        0.043546162545681
-      ],
-      [
-        "terdaftar_bursa",
-        0.02718692272901535
-      ],
-      [
-        "efek",
-        0.021116038784384727
-      ],
-      [
-        "return_saham",
-        0.018301306292414665
-      ],
-      [
-        "profitabilitas",
-        0.017942244186997414
-      ],
-      [
-        "bursa_efek",
-        0.017108771950006485
-      ],
-      [
-        "saham",
-        0.014135659672319889
-      ],
-      [
-        "ratio",
-        0.01304657943546772
-      ],
-      [
-        "earning_share",
-        0.012707051821053028
-      ],
-      [
-        "return_equity",
-        0.012570679187774658
-      ],
-      [
-        "debt_equity",
-        0.011731675826013088
-      ],
-      [
-        "sampling",
-        0.011415893211960793
-      ],
-      [
-        "perusahaan_manufaktur",
-        0.011116395704448223
-      ],
-      [
-        "purposive_sampling",
-        0.010779837146401405
-      ],
-      [
-        "pengujian",
-        0.01056667510420084
-      ],
-      [
-        "ukuran",
-        0.009700467810034752
-      ],
-      [
-        "positif",
-        0.009491671808063984
-      ],
-      [
-        "independen",
-        0.009357145056128502
-      ],
-      [
-        "roa",
-        0.009050252847373486
-      ],
-      [
-        "return_asset",
-        0.008927727118134499
-      ]
-    ],
-    "label": "Topic 14: harga_saham, terdaftar_bursa, efek",
-    "coherence": 0.0,
-    "top_words": [
-      "harga_saham",
-      "terdaftar_bursa",
-      "efek",
-      "return_saham",
-      "profitabilitas",
-      "bursa_efek",
-      "saham",
-      "ratio",
-      "earning_share",
-      "return_equity",
-      "debt_equity",
-      "sampling",
-      "perusahaan_manufaktur",
-      "purposive_sampling",
-      "pengujian",
-      "ukuran",
-      "positif",
-      "independen",
-      "roa",
-      "return_asset"
+      "kepuasan_konsumen",
+      "loyalitas_pelanggan"
     ]
   }
 ]
