@@ -92,7 +92,7 @@ class Settings(BaseSettings):
         description="Whether to detect and use bigrams"
     )
     use_trigrams: bool = Field(
-        default=True,
+        default=False,
         description="Whether to detect and use trigrams"
     )
     bigram_min_count: int = Field(
@@ -108,19 +108,19 @@ class Settings(BaseSettings):
     # LDA Model Settings
     # ==========================================================================
     lda_num_topics: int = Field(
-        default=20,
+        default=0,
         description="Number of topics for LDA model"
     )
     lda_passes: int = Field(
-        default=15,
+        default=20,
         description="Number of passes through the corpus during training"
     )
     lda_iterations: int = Field(
-        default=200,
+        default=400,
         description="Maximum number of iterations per document"
     )
     lda_chunksize: int = Field(
-        default=300,
+        default=1000,
         description="Number of documents per training chunk"
     )
     lda_alpha: str = Field(
@@ -144,7 +144,7 @@ class Settings(BaseSettings):
     # Dictionary Settings
     # ==========================================================================
     dict_no_below: int = Field(
-        default=10,
+        default=20,
         description="Minimum document frequency for words"
     )
     dict_no_above: float = Field(

@@ -16,11 +16,11 @@ from dataclasses import dataclass
 import pandas as pd
 from tqdm import tqdm
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
-# from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 from nlp_id.stopword import StopWord
+from nlp_id.tokenizer import Tokenizer
 from gensim.models.phrases import Phrases, Phraser
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords as NLTKStopwords
+# from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords as nltk_stopwords
 import nltk
 
 from src.config import Settings, get_settings
@@ -145,22 +145,21 @@ class IndonesianPreprocessor:
         logger.info(f"Preprocessor initialized (stemming={self._use_stemming})")
 
     def _init_nltk(self):
-        self._nltk_stopwords = set(NLTKStopwords.words('english'))
+        self._nltk_stopwords = set(nltk_stopwords.words('english'))
 
     def _init_nlp_id(self) -> None:
         # Get default stopwords from nlp-id
         stopword = StopWord()
         self._nlp_id_stopwords = set(stopword.get_stopword())
-    
+
+        self._nlp_id_tokenizer = Tokenizer()
+
     def _init_sastrawi(self) -> None:
         """Initialize Sastrawi stemmer and stopword remover."""
         # Stemmer
         stemmer_factory = StemmerFactory()
         self._stemmer = stemmer_factory.create_stemmer()
-        
-        # Get default stopwords from Sastrawi
-        # stopword_factory = StopWordRemoverFactory()
-        # self._sastrawi_stopwords = set(stopword_factory.getStopWords())
+
     
     def _build_stopwords(self, custom_stopwords: Optional[set[str]] = None) -> set[str]:
         """Build complete stopwords set."""
@@ -226,7 +225,7 @@ class IndonesianPreprocessor:
             return []
         
         try:
-            tokens = word_tokenize(text)
+            tokens = self._nlp_id_tokenizer.tokenize(text)
         except Exception:
             # Fallback to simple split
             tokens = text.split()

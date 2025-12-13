@@ -219,6 +219,7 @@ class LDATopicModel:
             chunksize=self.settings.lda_chunksize,
             workers=workers,
             per_word_topics=True,
+            eval_every=None
         )
         
         training_time = time.time() - start_time
