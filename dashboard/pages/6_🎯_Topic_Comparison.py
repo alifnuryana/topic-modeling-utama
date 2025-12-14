@@ -14,7 +14,7 @@ project_root = Path(__file__).parent.parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
-from dashboard.utils import load_model, load_data, get_analyzer, get_visualizer, check_model_loaded
+from dashboard.utils import load_model, load_data, get_analyzer, get_visualizer, check_model_loaded, get_topic_label_manager
 from dashboard.components.charts import (
     create_topic_comparison_chart, create_wordcloud_figure, create_heatmap
 )
@@ -41,6 +41,10 @@ visualizer = get_visualizer(model)
 
 num_topics = model.model.num_topics
 
+# Load topic labels
+label_manager = get_topic_label_manager()
+topic_labels = label_manager.get_labels_with_defaults(model)
+
 # Sidebar
 with st.sidebar:
     st.header("Pilih Topik untuk Dibandingkan")
@@ -49,7 +53,7 @@ with st.sidebar:
         "Topik A",
         options=list(range(num_topics)),
         index=0,
-        format_func=lambda x: f"Topik {x}",
+        format_func=lambda x: f"Topik {x}: {topic_labels.get(x, '')}",
         key="compare_topic_a",
     )
     
@@ -57,7 +61,7 @@ with st.sidebar:
         "Topik B",
         options=list(range(num_topics)),
         index=min(1, num_topics - 1),
-        format_func=lambda x: f"Topik {x}",
+        format_func=lambda x: f"Topik {x}: {topic_labels.get(x, '')}",
         key="compare_topic_b",
     )
     

@@ -11,7 +11,7 @@ project_root = Path(__file__).parent.parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
-from dashboard.utils import load_model, load_data, check_model_loaded
+from dashboard.utils import load_model, load_data, check_model_loaded, get_topic_label_manager
 
 st.set_page_config(
     page_title="Beranda - Pemodelan Topik",
@@ -46,6 +46,10 @@ if model is None:
     3. **Kembali ke sini** untuk mengeksplorasi hasil!
     """)
 else:
+    # Load label manager
+    label_manager = get_topic_label_manager()
+    topic_labels = label_manager.get_labels_with_defaults(model)
+    
     # Display model info
     col1, col2, col3, col4 = st.columns(4)
     
@@ -66,6 +70,23 @@ else:
     
     st.markdown("---")
     
+    # Labeling wizard prompt (if no labels yet)
+    if not label_manager.has_labels():
+        with st.container(border=True):
+            st.markdown("### 🏷️ Langkah Selanjutnya: Labeli Topik Anda")
+            st.markdown(f"""
+            Model Anda memiliki **{model.model.num_topics} topik** yang belum diberi label kustom. 
+            Memberikan label yang deskriptif akan membantu memahami setiap topik dengan lebih mudah.
+            """)
+            
+            col_btn1, col_btn2 = st.columns(2)
+            with col_btn1:
+                st.page_link("pages/8_🏷️_Topic_Labeling.py", label="🏷️ Label Topik Sekarang", icon="✏️")
+            with col_btn2:
+                st.caption("Anda juga bisa melakukan ini nanti dari menu sidebar.")
+        
+        st.markdown("---")
+    
     # Topics overview
     st.subheader("📋 Ringkasan Topik")
     
@@ -76,8 +97,13 @@ else:
     
     for i, topic in enumerate(topics):
         with cols[i % 2]:
+            label = topic_labels.get(topic.topic_id, "")
             words = ", ".join(topic.top_words[:6])
-            st.markdown(f"**Topik {topic.topic_id}**: {words}")
+            if label and label != words[:len(label)]:
+                st.markdown(f"**Topik {topic.topic_id}: {label}**")
+                st.caption(f"Kata: {words}")
+            else:
+                st.markdown(f"**Topik {topic.topic_id}**: {words}")
     
     st.markdown("---")
     
@@ -102,9 +128,9 @@ else:
     
     with nav_col3:
         st.markdown("""
-        **🔍 Pencarian Kemiripan**
+        **🏷️ Pelabelan Topik**
         
-        Temukan dokumen serupa atau analisis teks baru.
+        Berikan label kustom untuk setiap topik.
         """)
     
     # Dataset info
@@ -127,7 +153,8 @@ else:
         with col2:
             if 'dominant_topic' in df.columns:
                 most_common_topic = df['dominant_topic'].mode().iloc[0]
-                st.write(f"**Topik Paling Umum**: Topik {int(most_common_topic)}")
+                topic_label = topic_labels.get(int(most_common_topic), f"Topik {int(most_common_topic)}")
+                st.write(f"**Topik Paling Umum**: {topic_label}")
             
             if 'abstract' in df.columns:
                 avg_abstract_len = df['abstract'].str.split().str.len().mean()

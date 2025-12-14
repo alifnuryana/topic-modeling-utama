@@ -14,7 +14,7 @@ project_root = Path(__file__).parent.parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
-from dashboard.utils import load_model, load_data, get_analyzer, check_model_loaded
+from dashboard.utils import load_model, load_data, get_analyzer, check_model_loaded, get_topic_label_manager
 from dashboard.components.charts import create_topic_trend_chart
 from dashboard.components.filters import multi_topic_selector, date_range_selector
 
@@ -42,6 +42,10 @@ if df is None:
 
 num_topics = model.model.num_topics
 
+# Load topic labels
+label_manager = get_topic_label_manager()
+topic_labels = label_manager.get_labels_with_defaults(model)
+
 # Check if year column exists
 if 'year' not in df.columns or df['year'].isna().all():
     st.warning("⚠️ Data temporal tidak tersedia. Dataset tidak memiliki informasi tahun yang valid.")
@@ -63,6 +67,7 @@ with st.sidebar:
         key="trend_topics",
         label="Topik yang Ditampilkan",
         default=list(range(min(5, num_topics))),
+        labels=topic_labels,
     )
     
     st.markdown("---")

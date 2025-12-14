@@ -16,6 +16,7 @@ def topic_selector(
     label: str = "Pilih Topik",
     default: int = 0,
     include_all: bool = False,
+    labels: Optional[dict[int, str]] = None,
 ) -> Optional[int]:
     """
     Membuat widget pemilih topik.
@@ -26,6 +27,7 @@ def topic_selector(
         label: Label widget
         default: Pilihan topik default
         include_all: Sertakan opsi "Semua Topik"
+        labels: Dict mapping topic_id -> label kustom (opsional)
         
     Returns:
         ID topik terpilih atau None jika "Semua" dipilih
@@ -34,13 +36,20 @@ def topic_selector(
     
     if include_all:
         options = ["Semua Topik"] + options
-        
+    
+    def format_topic(x):
+        if isinstance(x, int):
+            if labels and x in labels:
+                return f"Topik {x}: {labels[x]}"
+            return f"Topik {x}"
+        return x
+    
     selection = st.selectbox(
         label,
         options=options,
         index=default if not include_all else default + 1,
         key=key,
-        format_func=lambda x: f"Topik {x}" if isinstance(x, int) else x,
+        format_func=format_topic,
     )
     
     return None if selection == "Semua Topik" else selection
@@ -51,6 +60,7 @@ def multi_topic_selector(
     key: str = "multi_topic_select",
     label: str = "Pilih Topik",
     default: Optional[list[int]] = None,
+    labels: Optional[dict[int, str]] = None,
 ) -> list[int]:
     """
     Membuat widget pemilih multi-topik.
@@ -60,6 +70,7 @@ def multi_topic_selector(
         key: Key widget
         label: Label widget
         default: Pilihan default
+        labels: Dict mapping topic_id -> label kustom (opsional)
         
     Returns:
         Daftar ID topik terpilih
@@ -67,12 +78,17 @@ def multi_topic_selector(
     options = list(range(num_topics))
     default = default or options[:3]  # Default to first 3
     
+    def format_topic(x):
+        if labels and x in labels:
+            return f"Topik {x}: {labels[x]}"
+        return f"Topik {x}"
+    
     selection = st.multiselect(
         label,
         options=options,
         default=default,
         key=key,
-        format_func=lambda x: f"Topik {x}",
+        format_func=format_topic,
     )
     
     return selection

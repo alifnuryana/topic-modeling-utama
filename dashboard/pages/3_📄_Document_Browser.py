@@ -13,7 +13,7 @@ project_root = Path(__file__).parent.parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
-from dashboard.utils import load_model, load_data, get_analyzer, check_model_loaded
+from dashboard.utils import load_model, load_data, get_analyzer, check_model_loaded, get_topic_label_manager
 from dashboard.components.filters import (
     topic_selector, search_input, probability_slider, num_results_selector
 )
@@ -43,6 +43,10 @@ if df is None:
 
 num_topics = model.model.num_topics
 
+# Load topic labels
+label_manager = get_topic_label_manager()
+topic_labels = label_manager.get_labels_with_defaults(model)
+
 # Sidebar filters
 with st.sidebar:
     st.header("Filter")
@@ -62,6 +66,7 @@ with st.sidebar:
         key="doc_filter_topic",
         label="Filter berdasarkan Topik",
         include_all=True,
+        labels=topic_labels,
     )
     
     # Probability threshold
@@ -206,9 +211,10 @@ else:
                 if topic_probs:
                     # Simple bar display
                     for topic_id, prob in topic_probs[:5]:
+                        topic_label = topic_labels.get(topic_id, f"Topik {topic_id}")
                         st.progress(
                             prob,
-                            text=f"Topik {topic_id}: {prob:.1%}",
+                            text=f"Topik {topic_id} ({topic_label}): {prob:.1%}",
                         )
 
 # Download option

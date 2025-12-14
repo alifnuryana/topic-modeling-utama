@@ -13,7 +13,8 @@ if str(project_root) not in sys.path:
 
 from dashboard.utils import (
     load_model, load_data, load_processed_docs,
-    get_analyzer, get_visualizer, check_model_loaded
+    get_analyzer, get_visualizer, check_model_loaded,
+    get_topic_label_manager
 )
 from dashboard.components.charts import (
     create_wordcloud_figure, create_topic_bar_chart,
@@ -42,6 +43,10 @@ visualizer = get_visualizer(model)
 
 num_topics = model.model.num_topics
 
+# Load topic labels
+label_manager = get_topic_label_manager()
+topic_labels = label_manager.get_labels_with_defaults(model)
+
 # Sidebar
 with st.sidebar:
     st.header("Opsi")
@@ -51,6 +56,7 @@ with st.sidebar:
         key="explorer_topic",
         label="Pilih Topik untuk Dijelajahi",
         include_all=False,
+        labels=topic_labels,
     )
     
     num_words = st.slider(
@@ -97,7 +103,8 @@ with tab1:
     
     topics = model.get_topics(num_words=8)
     for topic in topics:
-        with st.expander(f"Topik {topic.topic_id}: {', '.join(topic.top_words[:5])}"):
+        label = topic_labels.get(topic.topic_id, f"Topik {topic.topic_id}")
+        with st.expander(f"Topik {topic.topic_id}: {label}"):
             st.write(f"**Kata teratas**: {', '.join(topic.top_words)}")
 
 with tab2:

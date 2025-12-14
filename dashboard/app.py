@@ -85,7 +85,7 @@ def main():
         
         # Try to load quick stats
         try:
-            from dashboard.utils import load_model, load_data
+            from dashboard.utils import load_model, load_data, get_topic_label_manager
             
             model = load_model()
             df = load_data()
@@ -95,6 +95,12 @@ def main():
                 st.metric("Dokumen", f"{len(df):,}")
                 if model.metadata:
                     st.metric("Koherensi", f"{model.metadata.coherence_score:.4f}")
+                
+                # Check if labels need to be created
+                label_manager = get_topic_label_manager()
+                if not label_manager.has_labels():
+                    st.markdown("---")
+                    st.warning("🏷️ **Label topik belum dikonfigurasi**")
             else:
                 st.info("Model belum dimuat. Jalankan notebook terlebih dahulu.")
         except Exception as e:

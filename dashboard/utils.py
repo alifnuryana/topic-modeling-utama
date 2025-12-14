@@ -4,6 +4,7 @@ Fungsi utilitas dashboard.
 Menyediakan utilitas caching dan loading untuk dashboard Streamlit.
 """
 
+import json
 import pickle
 from pathlib import Path
 from typing import Optional
@@ -22,6 +23,160 @@ from src.lda_model import LDATopicModel
 from src.preprocessor import IndonesianPreprocessor
 from src.analysis import TopicAnalyzer
 from src.visualizations import TopicVisualizer
+
+
+class TopicLabelManager:
+    """
+    Manager untuk label topik kustom.
+    
+    Menyimpan dan memuat label topik dari file JSON terpisah,
+    memungkinkan user untuk memberikan nama yang lebih deskriptif
+    untuk setiap topik tanpa perlu melatih ulang model.
+    """
+    
+    LABELS_FILENAME = "topic_labels.json"
+    
+    def __init__(self) -> None:
+        """Initialize TopicLabelManager."""
+        self.settings = get_settings()
+        self._labels: dict[int, str] = {}
+        self._loaded = False
+    
+    @property
+    def labels_file_path(self) -> Path:
+        """Path ke file labels JSON."""
+        return self.settings.models_dir / self.LABELS_FILENAME
+    
+    def has_labels(self) -> bool:
+        """Cek apakah file label kustom ada dan valid."""
+        if not self.labels_file_path.exists():
+            return False
+        try:
+            with open(self.labels_file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            return isinstance(data, dict) and len(data) > 0
+        except (json.JSONDecodeError, IOError):
+            return False
+    
+    def load_labels(self) -> dict[int, str]:
+        """Memuat label dari file JSON."""
+        if self._loaded:
+            return self._labels
+        
+        if self.labels_file_path.exists():
+            try:
+                with open(self.labels_file_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                # Convert string keys to int
+                self._labels = {int(k): v for k, v in data.items()}
+            except (json.JSONDecodeError, IOError):
+                self._labels = {}
+        else:
+            self._labels = {}
+        
+        self._loaded = True
+        return self._labels
+    
+    def save_labels(self, labels: dict[int, str]) -> bool:
+        """
+        Menyimpan label ke file JSON.
+        
+        Args:
+            labels: Dict mapping topic_id -> label
+            
+        Returns:
+            True jika berhasil, False jika gagal
+        """
+        try:
+            self.settings.models_dir.mkdir(parents=True, exist_ok=True)
+            with open(self.labels_file_path, "w", encoding="utf-8") as f:
+                json.dump(labels, f, indent=2, ensure_ascii=False)
+            self._labels = labels
+            self._loaded = True
+            return True
+        except IOError:
+            return False
+    
+    def get_label(self, topic_id: int, default: Optional[str] = None) -> str:
+        """
+        Mendapatkan label untuk topik tertentu.
+        
+        Args:
+            topic_id: ID topik
+            default: Label default jika tidak ada
+            
+        Returns:
+            Label topik atau default
+        """
+        labels = self.load_labels()
+        if topic_id in labels:
+            return labels[topic_id]
+        return default or f"Topik {topic_id}"
+    
+    def get_all_labels(self) -> dict[int, str]:
+        """Mendapatkan semua label."""
+        return self.load_labels()
+    
+    def set_label(self, topic_id: int, label: str) -> bool:
+        """
+        Mengatur label untuk satu topik.
+        
+        Args:
+            topic_id: ID topik
+            label: Label baru
+            
+        Returns:
+            True jika berhasil
+        """
+        labels = self.load_labels()
+        labels[topic_id] = label
+        return self.save_labels(labels)
+    
+    def reset_labels(self) -> bool:
+        """
+        Menghapus file label (reset ke default).
+        
+        Returns:
+            True jika berhasil
+        """
+        try:
+            if self.labels_file_path.exists():
+                self.labels_file_path.unlink()
+            self._labels = {}
+            self._loaded = False
+            return True
+        except IOError:
+            return False
+    
+    def get_labels_with_defaults(self, model: "LDATopicModel") -> dict[int, str]:
+        """
+        Mendapatkan semua label dengan fallback ke label otomatis dari model.
+        
+        Args:
+            model: LDATopicModel instance
+            
+        Returns:
+            Dict mapping topic_id -> label (kustom atau auto)
+        """
+        custom_labels = self.load_labels()
+        result = {}
+        
+        topics = model.get_topics()
+        for topic in topics:
+            if topic.topic_id in custom_labels:
+                result[topic.topic_id] = custom_labels[topic.topic_id]
+            else:
+                # Fallback ke auto-generated label (top 3 words)
+                top_words = ", ".join(topic.top_words[:3])
+                result[topic.topic_id] = f"{top_words}"
+        
+        return result
+
+
+@st.cache_resource
+def get_topic_label_manager() -> TopicLabelManager:
+    """Mendapatkan instance TopicLabelManager dengan caching."""
+    return TopicLabelManager()
 
 
 @st.cache_resource
