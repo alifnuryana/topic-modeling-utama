@@ -14,7 +14,7 @@ project_root = Path(__file__).parent.parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
-from dashboard.utils import load_model, load_data, get_analyzer, get_visualizer, check_model_loaded, get_topic_label_manager
+from dashboard.utils import load_model, load_data, get_analyzer, get_visualizer, check_model_loaded, get_topic_label_manager, setup_logo
 from dashboard.components.charts import (
     create_topic_comparison_chart, create_wordcloud_figure, create_heatmap
 )
@@ -25,6 +25,8 @@ st.set_page_config(
     page_icon="🎯",
     layout="wide",
 )
+
+setup_logo()
 
 st.title("🎯 Perbandingan Topik")
 st.markdown("Bandingkan topik secara berdampingan untuk memahami persamaan dan perbedaannya.")

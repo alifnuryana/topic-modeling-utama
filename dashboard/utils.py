@@ -25,6 +25,17 @@ from src.analysis import TopicAnalyzer
 from src.visualizations import TopicVisualizer
 
 
+def setup_logo() -> None:
+    """
+    Menampilkan logo di atas navigasi sidebar.
+    
+    Panggil fungsi ini setelah st.set_page_config() di setiap halaman.
+    """
+    logo_path = Path(__file__).parent.parent / "assets" / "logo.png"
+    if logo_path.exists():
+        st.logo(str(logo_path), size="large")
+
+
 class TopicLabelManager:
     """
     Manager untuk label topik kustom.

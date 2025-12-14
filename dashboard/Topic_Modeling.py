@@ -23,6 +23,11 @@ def main():
         initial_sidebar_state="expanded",
     )
     
+    # Logo di atas navigasi menggunakan st.logo()
+    logo_path = Path(__file__).parent.parent / "assets" / "logo.png"
+    if logo_path.exists():
+        st.logo(str(logo_path), size="large")
+    
     # Custom CSS
     st.markdown("""
         <style>

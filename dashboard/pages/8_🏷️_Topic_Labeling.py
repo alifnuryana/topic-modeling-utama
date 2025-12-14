@@ -16,7 +16,7 @@ if str(project_root) not in sys.path:
 
 from dashboard.utils import (
     load_model, check_model_loaded, 
-    get_topic_label_manager, TopicLabelManager
+    get_topic_label_manager, TopicLabelManager, setup_logo
 )
 from dashboard.components.charts import create_wordcloud_figure
 
@@ -25,6 +25,8 @@ st.set_page_config(
     page_icon="🏷️",
     layout="wide",
 )
+
+setup_logo()
 
 st.title("🏷️ Pelabelan Topik")
 st.markdown("Berikan label deskriptif untuk setiap topik agar lebih mudah dipahami.")

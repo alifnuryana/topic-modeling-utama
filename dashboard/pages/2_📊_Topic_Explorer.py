@@ -14,7 +14,7 @@ if str(project_root) not in sys.path:
 from dashboard.utils import (
     load_model, load_data, load_processed_docs,
     get_analyzer, get_visualizer, check_model_loaded,
-    get_topic_label_manager
+    get_topic_label_manager, setup_logo
 )
 from dashboard.components.charts import (
     create_wordcloud_figure, create_topic_bar_chart,
@@ -27,6 +27,8 @@ st.set_page_config(
     page_icon="📊",
     layout="wide",
 )
+
+setup_logo()
 
 st.title("📊 Penjelajah Topik")
 st.markdown("Eksplorasi topik yang ditemukan, lihat word cloud, dan analisis konten topik.")

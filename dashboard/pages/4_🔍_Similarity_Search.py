@@ -16,7 +16,7 @@ if str(project_root) not in sys.path:
 
 from dashboard.utils import (
     load_model, load_data, load_preprocessor, load_processed_docs,
-    get_analyzer, check_model_loaded
+    get_analyzer, check_model_loaded, setup_logo
 )
 from dashboard.components.charts import create_similarity_chart
 from dashboard.components.filters import num_results_selector
@@ -26,6 +26,8 @@ st.set_page_config(
     page_icon="🔍",
     layout="wide",
 )
+
+setup_logo()
 
 st.title("🔍 Pencarian Kemiripan")
 st.markdown("Temukan dokumen serupa atau analisis distribusi topik dari teks baru.")

@@ -13,7 +13,7 @@ project_root = Path(__file__).parent.parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
-from dashboard.utils import load_model, load_data, get_analyzer, check_model_loaded, get_topic_label_manager
+from dashboard.utils import load_model, load_data, get_analyzer, check_model_loaded, get_topic_label_manager, setup_logo
 from dashboard.components.filters import (
     topic_selector, search_input, probability_slider, num_results_selector
 )
@@ -24,6 +24,8 @@ st.set_page_config(
     page_icon="📄",
     layout="wide",
 )
+
+setup_logo()
 
 st.title("📄 Peramban Dokumen")
 st.markdown("Cari dan filter dokumen berdasarkan topik atau kata kunci.")
