@@ -143,7 +143,7 @@ if model.dictionary:
                     f"{np.std(freqs):,.1f}",
                 ]
             })
-            st.dataframe(stats_df, hide_index=True, use_container_width=True)
+            st.dataframe(stats_df, hide_index=True, width='stretch')
 else:
     st.info("Kamus tidak tersedia")
 
@@ -189,7 +189,7 @@ for topic in topics:
     })
 
 topic_df = pd.DataFrame(topic_data)
-st.dataframe(topic_df, hide_index=True, use_container_width=True)
+st.dataframe(topic_df, hide_index=True, width='stretch')
 
 # Per-topic metrics
 if model.metadata and df is not None:
@@ -212,7 +212,7 @@ if model.metadata and df is not None:
     
     if metrics_data:
         metrics_df = pd.DataFrame(metrics_data)
-        st.dataframe(metrics_df, hide_index=True, use_container_width=True)
+        st.dataframe(metrics_df, hide_index=True, width='stretch')
 
 # File Paths
 st.markdown("---")

@@ -71,7 +71,7 @@ with tab1:
         try:
             prevalence = analyzer.compute_topic_prevalence()
             fig = create_topic_prevalence_chart(prevalence)
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
             
             # Summary stats
             st.markdown("### Ringkasan Topik")
@@ -109,7 +109,7 @@ with tab2:
     if words:
         # Create word cloud
         wc_base64 = create_wordcloud_figure(words)
-        st.image(f"data:image/png;base64,{wc_base64}", use_container_width=True)
+        st.image(f"data:image/png;base64,{wc_base64}", width='stretch')
     else:
         st.info("Tidak ada kata yang ditemukan untuk topik ini")
     
@@ -149,7 +149,7 @@ with tab3:
             selected_topic,
             height=max(400, len(words) * 25)
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
         
         # Table
         st.markdown("### Tabel Bobot Kata")
@@ -160,7 +160,7 @@ with tab3:
             "Kata": word_list,
             "Bobot": weight_list,
         })
-        st.dataframe(word_df, use_container_width=True, hide_index=True)
+        st.dataframe(word_df, width='stretch', hide_index=True)
     else:
         st.info("Tidak ada kata yang ditemukan untuk topik ini")
 

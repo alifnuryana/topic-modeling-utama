@@ -89,7 +89,7 @@ with tab1:
         topic_b,
         height=500,
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
     
     # Word tables
     st.markdown("---")
@@ -104,7 +104,7 @@ with tab1:
             "Kata": [w for w, _ in topic_a_words],
             "Bobot": [f"{w:.4f}" for _, w in topic_a_words],
         })
-        st.dataframe(words_a_df, hide_index=True, use_container_width=True)
+        st.dataframe(words_a_df, hide_index=True, width='stretch')
     
     with col2:
         st.markdown(f"### Kata Topik {topic_b}")
@@ -114,7 +114,7 @@ with tab1:
             "Kata": [w for w, _ in topic_b_words],
             "Bobot": [f"{w:.4f}" for _, w in topic_b_words],
         })
-        st.dataframe(words_b_df, hide_index=True, use_container_width=True)
+        st.dataframe(words_b_df, hide_index=True, width='stretch')
 
 with tab2:
     st.subheader("Word Cloud")
@@ -124,12 +124,12 @@ with tab2:
     with col1:
         st.markdown(f"### Topik {topic_a}")
         wc_a = create_wordcloud_figure(topic_a_words, colormap="Blues")
-        st.image(f"data:image/png;base64,{wc_a}", use_container_width=True)
+        st.image(f"data:image/png;base64,{wc_a}", width='stretch')
     
     with col2:
         st.markdown(f"### Topik {topic_b}")
         wc_b = create_wordcloud_figure(topic_b_words, colormap="Oranges")
-        st.image(f"data:image/png;base64,{wc_b}", use_container_width=True)
+        st.image(f"data:image/png;base64,{wc_b}", width='stretch')
 
 with tab3:
     st.subheader("Analisis Tumpang Tindih")
@@ -206,7 +206,7 @@ try:
             colorscale="RdYlGn_r",
             height=500,
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
         
         # Interpretation
         st.markdown("""

@@ -136,7 +136,7 @@ else:
                 height=500,
             )
             
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
             
             # Year-by-year comparison
             st.markdown("---")
@@ -153,7 +153,7 @@ else:
             
             comparison_df = pd.DataFrame(comparison_data)
             
-            st.dataframe(comparison_df, use_container_width=True, hide_index=True)
+            st.dataframe(comparison_df, width='stretch', hide_index=True)
             
             # Download button
             csv_data = comparison_df.to_csv(index=False)
