@@ -1,5 +1,5 @@
 """
-Similarity Search page for the Topic Modeling Dashboard.
+Halaman Pencarian Kemiripan untuk Dashboard Pemodelan Topik.
 """
 
 import streamlit as st
@@ -22,13 +22,13 @@ from dashboard.components.charts import create_similarity_chart
 from dashboard.components.filters import num_results_selector
 
 st.set_page_config(
-    page_title="Similarity Search - Topic Modeling",
+    page_title="Pencarian Kemiripan - Pemodelan Topik",
     page_icon="🔍",
     layout="wide",
 )
 
-st.title("🔍 Similarity Search")
-st.markdown("Find similar documents or analyze the topic distribution of new text.")
+st.title("🔍 Pencarian Kemiripan")
+st.markdown("Temukan dokumen serupa atau analisis distribusi topik dari teks baru.")
 st.markdown("---")
 
 # Load model
@@ -42,16 +42,16 @@ preprocessor = load_preprocessor()
 processed_docs = load_processed_docs()
 
 if df is None:
-    st.error("Could not load document data.")
+    st.error("Tidak dapat memuat data dokumen.")
     st.stop()
 
 num_topics = model.model.num_topics
 
 # Tabs for different search modes
-tab1, tab2 = st.tabs(["📄 Find Similar Documents", "📝 Analyze New Text"])
+tab1, tab2 = st.tabs(["📄 Temukan Dokumen Serupa", "📝 Analisis Teks Baru"])
 
 with tab1:
-    st.subheader("Find Documents Similar to a Selected Document")
+    st.subheader("Temukan Dokumen Serupa dengan Dokumen yang Dipilih")
     
     # Document selector
     col1, col2 = st.columns([3, 1])
@@ -64,7 +64,7 @@ with tab1:
         }
         
         selected_doc_str = st.selectbox(
-            "Select a Document",
+            "Pilih Dokumen",
             options=list(doc_options.keys()),
             key="sim_doc_select",
         )
@@ -74,7 +74,7 @@ with tab1:
     with col2:
         num_similar = num_results_selector(
             key="num_similar",
-            label="Number of Results",
+            label="Jumlah Hasil",
             options=[5, 10, 15, 20],
             default_index=1,
         )
@@ -82,24 +82,24 @@ with tab1:
     # Display selected document
     selected_doc = df.iloc[selected_doc_idx]
     
-    with st.expander("📄 Selected Document", expanded=True):
-        st.markdown(f"**Title**: {selected_doc['title']}")
+    with st.expander("📄 Dokumen Terpilih", expanded=True):
+        st.markdown(f"**Judul**: {selected_doc['title']}")
         if 'authors' in selected_doc:
-            st.markdown(f"**Authors**: {selected_doc['authors']}")
+            st.markdown(f"**Penulis**: {selected_doc['authors']}")
         if 'year' in selected_doc and pd.notna(selected_doc['year']):
-            st.markdown(f"**Year**: {int(selected_doc['year'])}")
+            st.markdown(f"**Tahun**: {int(selected_doc['year'])}")
         st.markdown("---")
-        st.markdown("**Abstract**:")
+        st.markdown("**Abstrak**:")
         st.write(selected_doc['abstract'][:500] + "..." if len(str(selected_doc['abstract'])) > 500 else selected_doc['abstract'])
     
     # Find similar documents
-    if st.button("🔍 Find Similar Documents", key="find_similar"):
-        with st.spinner("Finding similar documents..."):
+    if st.button("🔍 Temukan Dokumen Serupa", key="find_similar"):
+        with st.spinner("Mencari dokumen serupa..."):
             try:
                 similar_docs = analyzer.find_similar_documents(selected_doc_idx, top_n=num_similar)
                 
                 if len(similar_docs) > 0:
-                    st.success(f"Found {len(similar_docs)} similar documents")
+                    st.success(f"Ditemukan {len(similar_docs)} dokumen serupa")
                     
                     # Display results
                     for rank, (_, row) in enumerate(similar_docs.iterrows(), 1):
@@ -113,45 +113,45 @@ with tab1:
                         else:
                             icon = "🔴"
                         
-                        with st.expander(f"{icon} #{rank} - Similarity: {similarity:.3f} - {row['title'][:70]}..."):
+                        with st.expander(f"{icon} #{rank} - Kemiripan: {similarity:.3f} - {row['title'][:70]}..."):
                             col1, col2 = st.columns([3, 1])
                             
                             with col1:
-                                st.markdown(f"**Title**: {row['title']}")
+                                st.markdown(f"**Judul**: {row['title']}")
                                 if 'authors' in row:
-                                    st.markdown(f"**Authors**: {row['authors']}")
+                                    st.markdown(f"**Penulis**: {row['authors']}")
                                 if 'year' in row and pd.notna(row['year']):
-                                    st.markdown(f"**Year**: {int(row['year'])}")
+                                    st.markdown(f"**Tahun**: {int(row['year'])}")
                                 st.markdown("---")
                                 abstract = str(row['abstract'])[:400]
                                 st.write(abstract + "..." if len(str(row['abstract'])) > 400 else row['abstract'])
                             
                             with col2:
-                                st.metric("Similarity", f"{similarity:.3f}")
+                                st.metric("Kemiripan", f"{similarity:.3f}")
                                 if 'dominant_topic' in row:
-                                    st.metric("Dominant Topic", f"Topic {int(row['dominant_topic'])}")
+                                    st.metric("Topik Dominan", f"Topik {int(row['dominant_topic'])}")
                 else:
-                    st.info("No similar documents found")
+                    st.info("Tidak ditemukan dokumen serupa")
             except Exception as e:
-                st.error(f"Error finding similar documents: {e}")
+                st.error(f"Error mencari dokumen serupa: {e}")
 
 with tab2:
-    st.subheader("Analyze Topic Distribution of New Text")
-    st.markdown("Enter text below to see its topic distribution based on the trained model.")
+    st.subheader("Analisis Distribusi Topik dari Teks Baru")
+    st.markdown("Masukkan teks di bawah ini untuk melihat distribusi topiknya berdasarkan model yang telah dilatih.")
     
     # Text input
     new_text = st.text_area(
-        "Enter text to analyze",
+        "Masukkan teks untuk dianalisis",
         height=200,
-        placeholder="Paste or type your text here...",
+        placeholder="Tempel atau ketik teks Anda di sini...",
         key="new_text_input",
     )
     
-    if st.button("🔍 Analyze Text", key="analyze_text"):
+    if st.button("🔍 Analisis Teks", key="analyze_text"):
         if not new_text.strip():
-            st.warning("Please enter some text to analyze.")
+            st.warning("Silakan masukkan teks untuk dianalisis.")
         else:
-            with st.spinner("Analyzing text..."):
+            with st.spinner("Menganalisis teks..."):
                 try:
                     # Infer topics
                     result = model.infer_topics(
@@ -160,21 +160,21 @@ with tab2:
                         num_words=10,
                     )
                     
-                    st.success("Analysis complete!")
+                    st.success("Analisis selesai!")
                     
                     col1, col2 = st.columns([1, 1])
                     
                     with col1:
-                        st.markdown("### Preprocessing Info")
-                        st.metric("Tokens", result['num_tokens'])
+                        st.markdown("### Info Preprocessing")
+                        st.metric("Token", result['num_tokens'])
                         
-                        with st.expander("View tokens"):
+                        with st.expander("Lihat token"):
                             st.write(result['tokens'][:50])
                             if len(result['tokens']) > 50:
-                                st.caption(f"... and {len(result['tokens']) - 50} more")
+                                st.caption(f"... dan {len(result['tokens']) - 50} lainnya")
                     
                     with col2:
-                        st.markdown("### Top Topics")
+                        st.markdown("### Topik Teratas")
                         
                         for topic_info in result['topics'][:5]:
                             topic_id = topic_info['topic_id']
@@ -183,13 +183,13 @@ with tab2:
                             
                             st.progress(
                                 prob,
-                                text=f"Topic {topic_id}: {prob:.1%}",
+                                text=f"Topik {topic_id}: {prob:.1%}",
                             )
-                            st.caption(f"Words: {words}")
+                            st.caption(f"Kata: {words}")
                     
                     # Find similar based on this text
                     st.markdown("---")
-                    st.markdown("### Similar Documents")
+                    st.markdown("### Dokumen Serupa")
                     
                     try:
                         similar_docs = analyzer.find_similar_by_text(
@@ -201,28 +201,28 @@ with tab2:
                         if len(similar_docs) > 0:
                             for rank, (_, row) in enumerate(similar_docs.iterrows(), 1):
                                 similarity = row['similarity']
-                                st.markdown(f"**{rank}. (Sim: {similarity:.3f})** {row['title'][:80]}...")
+                                st.markdown(f"**{rank}. (Kemiripan: {similarity:.3f})** {row['title'][:80]}...")
                         else:
-                            st.info("No similar documents found")
+                            st.info("Tidak ditemukan dokumen serupa")
                     except Exception as e:
-                        st.warning(f"Could not find similar documents: {e}")
+                        st.warning(f"Tidak dapat menemukan dokumen serupa: {e}")
                         
                 except Exception as e:
-                    st.error(f"Error analyzing text: {e}")
+                    st.error(f"Error menganalisis teks: {e}")
 
 # Sidebar with tips
 with st.sidebar:
     st.header("💡 Tips")
     
     st.markdown("""
-    **Finding Similar Documents:**
-    - Select a document from the dropdown
-    - The search uses topic distribution similarity
-    - Higher similarity scores mean more similar topics
+    **Menemukan Dokumen Serupa:**
+    - Pilih dokumen dari dropdown
+    - Pencarian menggunakan kemiripan distribusi topik
+    - Skor kemiripan lebih tinggi berarti topik lebih mirip
     
-    **Analyzing New Text:**
-    - Enter or paste any text
-    - Works best with academic abstracts
-    - Longer text gives better results
-    - Uses the same preprocessing as training
+    **Menganalisis Teks Baru:**
+    - Masukkan atau tempel teks apapun
+    - Bekerja paling baik dengan abstrak akademik
+    - Teks lebih panjang memberikan hasil lebih baik
+    - Menggunakan preprocessing yang sama dengan pelatihan
     """)

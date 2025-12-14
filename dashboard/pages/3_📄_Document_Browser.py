@@ -1,5 +1,5 @@
 """
-Document Browser page for the Topic Modeling Dashboard.
+Halaman Peramban Dokumen untuk Dashboard Pemodelan Topik.
 """
 
 import streamlit as st
@@ -20,13 +20,13 @@ from dashboard.components.filters import (
 from dashboard.components.charts import create_topic_distribution_pie
 
 st.set_page_config(
-    page_title="Document Browser - Topic Modeling",
+    page_title="Peramban Dokumen - Pemodelan Topik",
     page_icon="📄",
     layout="wide",
 )
 
-st.title("📄 Document Browser")
-st.markdown("Search and filter documents by topic or keyword.")
+st.title("📄 Peramban Dokumen")
+st.markdown("Cari dan filter dokumen berdasarkan topik atau kata kunci.")
 st.markdown("---")
 
 # Load model
@@ -38,20 +38,20 @@ df = load_data()
 analyzer = get_analyzer(model)
 
 if df is None:
-    st.error("Could not load document data.")
+    st.error("Tidak dapat memuat data dokumen.")
     st.stop()
 
 num_topics = model.model.num_topics
 
 # Sidebar filters
 with st.sidebar:
-    st.header("Filters")
+    st.header("Filter")
     
     # Search
     search_query = search_input(
         key="doc_search",
-        label="Search in Title/Abstract",
-        placeholder="Enter keywords...",
+        label="Cari di Judul/Abstrak",
+        placeholder="Masukkan kata kunci...",
     )
     
     st.markdown("---")
@@ -60,7 +60,7 @@ with st.sidebar:
     filter_topic = topic_selector(
         num_topics,
         key="doc_filter_topic",
-        label="Filter by Topic",
+        label="Filter berdasarkan Topik",
         include_all=True,
     )
     
@@ -68,7 +68,7 @@ with st.sidebar:
     if filter_topic is not None:
         min_prob = probability_slider(
             key="doc_min_prob",
-            label="Min Topic Probability",
+            label="Probabilitas Topik Minimum",
             default=0.3,
         )
     else:
@@ -80,7 +80,7 @@ with st.sidebar:
     if 'year' in df.columns and df['year'].notna().any():
         years = df['year'].dropna().astype(int)
         year_range = st.slider(
-            "Year Range",
+            "Rentang Tahun",
             min_value=int(years.min()),
             max_value=int(years.max()),
             value=(int(years.min()), int(years.max())),
@@ -94,7 +94,7 @@ with st.sidebar:
     # Results per page
     results_per_page = num_results_selector(
         key="results_per_page",
-        label="Results per Page",
+        label="Hasil per Halaman",
         options=[10, 20, 50, 100],
         default_index=1,
     )
@@ -124,10 +124,10 @@ if year_range and 'year' in filtered_df.columns:
     ]
 
 # Display results
-st.subheader(f"📚 Results ({len(filtered_df):,} documents)")
+st.subheader(f"📚 Hasil ({len(filtered_df):,} dokumen)")
 
 if len(filtered_df) == 0:
-    st.info("No documents match your filters. Try adjusting the criteria.")
+    st.info("Tidak ada dokumen yang cocok dengan filter Anda. Coba sesuaikan kriteria.")
 else:
     # Pagination
     total_pages = (len(filtered_df) - 1) // results_per_page + 1
@@ -135,7 +135,7 @@ else:
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         page = st.number_input(
-            "Page",
+            "Halaman",
             min_value=1,
             max_value=total_pages,
             value=1,
@@ -147,7 +147,7 @@ else:
     
     page_df = filtered_df.iloc[start_idx:end_idx]
     
-    st.caption(f"Showing {start_idx + 1} - {min(end_idx, len(filtered_df))} of {len(filtered_df)}")
+    st.caption(f"Menampilkan {start_idx + 1} - {min(end_idx, len(filtered_df))} dari {len(filtered_df)}")
     
     # Display documents
     for idx, (_, row) in enumerate(page_df.iterrows()):
@@ -160,35 +160,35 @@ else:
             with col1:
                 # Metadata
                 if 'authors' in row and row['authors']:
-                    st.markdown(f"**Authors**: {row['authors']}")
+                    st.markdown(f"**Penulis**: {row['authors']}")
                 
                 if 'year' in row and pd.notna(row['year']):
-                    st.markdown(f"**Year**: {int(row['year'])}")
+                    st.markdown(f"**Tahun**: {int(row['year'])}")
                 
                 if 'subjects' in row and row['subjects']:
                     subjects = str(row['subjects'])[:200]
-                    st.markdown(f"**Subjects**: {subjects}...")
+                    st.markdown(f"**Subjek**: {subjects}...")
                 
                 st.markdown("---")
                 
                 # Abstract
-                st.markdown("**Abstract**:")
+                st.markdown("**Abstrak**:")
                 abstract = str(row['abstract'])
                 if len(abstract) > 500:
                     st.write(abstract[:500] + "...")
-                    with st.expander("Show full abstract"):
+                    with st.expander("Tampilkan abstrak lengkap"):
                         st.write(abstract)
                 else:
                     st.write(abstract)
             
             with col2:
                 # Topic distribution
-                st.markdown("**Topic Distribution**:")
+                st.markdown("**Distribusi Topik**:")
                 
                 if 'dominant_topic' in row:
                     st.metric(
-                        "Dominant Topic",
-                        f"Topic {int(row['dominant_topic'])}",
+                        "Topik Dominan",
+                        f"Topik {int(row['dominant_topic'])}",
                         f"{row.get('dominant_prob', 0):.1%}" if 'dominant_prob' in row else None,
                     )
                 
@@ -208,7 +208,7 @@ else:
                     for topic_id, prob in topic_probs[:5]:
                         st.progress(
                             prob,
-                            text=f"Topic {topic_id}: {prob:.1%}",
+                            text=f"Topik {topic_id}: {prob:.1%}",
                         )
 
 # Download option
@@ -216,8 +216,8 @@ st.markdown("---")
 
 if len(filtered_df) > 0:
     st.download_button(
-        label="📥 Download Filtered Results (CSV)",
+        label="📥 Unduh Hasil Filter (CSV)",
         data=filtered_df.drop(columns=[c for c in filtered_df.columns if c.startswith('topic_')], errors='ignore').to_csv(index=False),
-        file_name="filtered_documents.csv",
+        file_name="dokumen_terfilter.csv",
         mime="text/csv",
     )

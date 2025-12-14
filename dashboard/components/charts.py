@@ -1,7 +1,7 @@
 """
-Chart components for the dashboard.
+Komponen chart untuk dashboard.
 
-Provides Plotly chart generation functions.
+Menyediakan fungsi pembuatan chart Plotly.
 """
 
 from typing import Optional
@@ -23,16 +23,16 @@ def create_wordcloud_figure(
     colormap: str = "viridis",
 ) -> str:
     """
-    Create a word cloud and return as base64 image.
+    Membuat word cloud dan mengembalikan sebagai gambar base64.
     
     Args:
-        word_weights: List of (word, weight) tuples
-        width: Image width
-        height: Image height
-        colormap: Matplotlib colormap
+        word_weights: List tuple (kata, bobot)
+        width: Lebar gambar
+        height: Tinggi gambar
+        colormap: Colormap Matplotlib
         
     Returns:
-        Base64 encoded PNG image
+        Gambar PNG terenkode base64
     """
     word_freq = {word: weight for word, weight in word_weights}
     
@@ -62,17 +62,17 @@ def create_topic_bar_chart(
     height: int = 400,
 ) -> go.Figure:
     """
-    Create a horizontal bar chart of topic words.
+    Membuat bar chart horizontal dari kata-kata topik.
     
     Args:
-        words: List of words
-        weights: List of weights
-        topic_id: Topic ID for title
-        color: Bar color
-        height: Chart height
+        words: Daftar kata
+        weights: Daftar bobot
+        topic_id: ID Topik untuk judul
+        color: Warna bar
+        height: Tinggi chart
         
     Returns:
-        Plotly Figure
+        Figure Plotly
     """
     fig = go.Figure()
     
@@ -81,12 +81,12 @@ def create_topic_bar_chart(
         y=words,
         orientation='h',
         marker_color=color,
-        hovertemplate="<b>%{y}</b><br>Weight: %{x:.4f}<extra></extra>",
+        hovertemplate="<b>%{y}</b><br>Bobot: %{x:.4f}<extra></extra>",
     ))
     
     fig.update_layout(
-        title=f"Topic {topic_id} - Top Words",
-        xaxis_title="Weight",
+        title=f"Topik {topic_id} - Kata Teratas",
+        xaxis_title="Bobot",
         yaxis_title="",
         yaxis=dict(autorange="reversed"),
         height=height,
@@ -102,14 +102,14 @@ def create_topic_prevalence_chart(
     height: int = 400,
 ) -> go.Figure:
     """
-    Create a bar chart of topic prevalence.
+    Membuat bar chart prevalensi topik.
     
     Args:
-        prevalence_df: DataFrame with topic_id and mean_probability
-        height: Chart height
+        prevalence_df: DataFrame dengan topic_id dan mean_probability
+        height: Tinggi chart
         
     Returns:
-        Plotly Figure
+        Figure Plotly
     """
     fig = px.bar(
         prevalence_df,
@@ -117,10 +117,10 @@ def create_topic_prevalence_chart(
         y="mean_probability",
         color="topic_id",
         error_y="std_probability" if "std_probability" in prevalence_df.columns else None,
-        title="Topic Prevalence Across Documents",
+        title="Prevalensi Topik di Seluruh Dokumen",
         labels={
-            "topic_id": "Topic",
-            "mean_probability": "Mean Probability",
+            "topic_id": "Topik",
+            "mean_probability": "Probabilitas Rata-rata",
         },
         color_continuous_scale="Viridis",
         height=height,
@@ -142,16 +142,16 @@ def create_topic_trend_chart(
     height: int = 500,
 ) -> go.Figure:
     """
-    Create a line chart of topic trends over time.
+    Membuat line chart tren topik dari waktu ke waktu.
     
     Args:
-        trends_df: DataFrame with date and topic columns
-        selected_topics: List of topic IDs to show (None for all)
-        date_column: Name of date column
-        height: Chart height
+        trends_df: DataFrame dengan kolom tanggal dan topik
+        selected_topics: Daftar ID topik yang akan ditampilkan (None untuk semua)
+        date_column: Nama kolom tanggal
+        height: Tinggi chart
         
     Returns:
-        Plotly Figure
+        Figure Plotly
     """
     # Get topic columns
     topic_columns = [col for col in trends_df.columns if col.startswith("topic_")]
@@ -169,18 +169,18 @@ def create_topic_trend_chart(
         fig.add_trace(go.Scatter(
             x=trends_df[date_column],
             y=trends_df[col],
-            name=f"Topic {topic_id}",
+            name=f"Topik {topic_id}",
             mode="lines+markers",
             line=dict(color=colors[i % len(colors)]),
-            hovertemplate=f"<b>Topic {topic_id}</b><br>" +
-                         "Date: %{x}<br>" +
-                         "Prevalence: %{y:.3f}<extra></extra>",
+            hovertemplate=f"<b>Topik {topic_id}</b><br>" +
+                         "Tanggal: %{x}<br>" +
+                         "Prevalensi: %{y:.3f}<extra></extra>",
         ))
     
     fig.update_layout(
-        title="Topic Trends Over Time",
-        xaxis_title="Date",
-        yaxis_title="Topic Prevalence",
+        title="Tren Topik dari Waktu ke Waktu",
+        xaxis_title="Tanggal",
+        yaxis_title="Prevalensi Topik",
         height=height,
         hovermode="x unified",
         legend=dict(
@@ -198,20 +198,20 @@ def create_topic_trend_chart(
 def create_similarity_chart(
     similarities: list[float],
     labels: list[str],
-    title: str = "Document Similarity",
+    title: str = "Kemiripan Dokumen",
     height: int = 400,
 ) -> go.Figure:
     """
-    Create a horizontal bar chart of similarity scores.
+    Membuat horizontal bar chart skor kemiripan.
     
     Args:
-        similarities: List of similarity scores
-        labels: List of document labels
-        title: Chart title
-        height: Chart height
+        similarities: Daftar skor kemiripan
+        labels: Daftar label dokumen
+        title: Judul chart
+        height: Tinggi chart
         
     Returns:
-        Plotly Figure
+        Figure Plotly
     """
     # Color based on similarity
     colors = ["#27ae60" if s > 0.7 else "#f39c12" if s > 0.4 else "#e74c3c" for s in similarities]
@@ -223,12 +223,12 @@ def create_similarity_chart(
         y=labels,
         orientation='h',
         marker_color=colors,
-        hovertemplate="<b>%{y}</b><br>Similarity: %{x:.3f}<extra></extra>",
+        hovertemplate="<b>%{y}</b><br>Kemiripan: %{x:.3f}<extra></extra>",
     ))
     
     fig.update_layout(
         title=title,
-        xaxis_title="Similarity Score",
+        xaxis_title="Skor Kemiripan",
         yaxis_title="",
         yaxis=dict(autorange="reversed"),
         height=height,
@@ -244,31 +244,31 @@ def create_topic_distribution_pie(
     height: int = 400,
 ) -> go.Figure:
     """
-    Create a pie chart of topic distribution for a document.
+    Membuat pie chart distribusi topik untuk sebuah dokumen.
     
     Args:
-        topic_probs: List of (topic_id, probability) tuples
-        height: Chart height
+        topic_probs: List tuple (topic_id, probability)
+        height: Tinggi chart
         
     Returns:
-        Plotly Figure
+        Figure Plotly
     """
     # Filter out very small probabilities
     topic_probs = [(t, p) for t, p in topic_probs if p > 0.01]
     
-    topics = [f"Topic {t}" for t, _ in topic_probs]
+    topics = [f"Topik {t}" for t, _ in topic_probs]
     probs = [p for _, p in topic_probs]
     
     fig = go.Figure(data=[go.Pie(
         labels=topics,
         values=probs,
-        hovertemplate="<b>%{label}</b><br>Probability: %{value:.3f}<extra></extra>",
+        hovertemplate="<b>%{label}</b><br>Probabilitas: %{value:.3f}<extra></extra>",
         textinfo="label+percent",
         hole=0.3,
     )])
     
     fig.update_layout(
-        title="Topic Distribution",
+        title="Distribusi Topik",
         height=height,
         margin=dict(l=10, r=10, t=40, b=10),
     )
@@ -284,21 +284,21 @@ def create_topic_comparison_chart(
     height: int = 500,
 ) -> go.Figure:
     """
-    Create a side-by-side comparison of two topics.
+    Membuat perbandingan berdampingan dari dua topik.
     
     Args:
-        topic_a_words: Words and weights for topic A
-        topic_b_words: Words and weights for topic B
-        topic_a_id: Topic A ID
-        topic_b_id: Topic B ID
-        height: Chart height
+        topic_a_words: Kata dan bobot untuk topik A
+        topic_b_words: Kata dan bobot untuk topik B
+        topic_a_id: ID Topik A
+        topic_b_id: ID Topik B
+        height: Tinggi chart
         
     Returns:
-        Plotly Figure
+        Figure Plotly
     """
     fig = make_subplots(
         rows=1, cols=2,
-        subplot_titles=[f"Topic {topic_a_id}", f"Topic {topic_b_id}"],
+        subplot_titles=[f"Topik {topic_a_id}", f"Topik {topic_b_id}"],
         horizontal_spacing=0.15,
     )
     
@@ -312,7 +312,7 @@ def create_topic_comparison_chart(
             y=words_a,
             orientation='h',
             marker_color="#1f77b4",
-            name=f"Topic {topic_a_id}",
+            name=f"Topik {topic_a_id}",
             showlegend=False,
         ),
         row=1, col=1
@@ -328,7 +328,7 @@ def create_topic_comparison_chart(
             y=words_b,
             orientation='h',
             marker_color="#ff7f0e",
-            name=f"Topic {topic_b_id}",
+            name=f"Topik {topic_b_id}",
             showlegend=False,
         ),
         row=1, col=2
@@ -337,7 +337,7 @@ def create_topic_comparison_chart(
     fig.update_yaxes(autorange="reversed")
     fig.update_layout(
         height=height,
-        title="Topic Comparison",
+        title="Perbandingan Topik",
         margin=dict(l=10, r=10, t=60, b=40),
     )
     
@@ -353,25 +353,25 @@ def create_heatmap(
     height: int = 500,
 ) -> go.Figure:
     """
-    Create a heatmap visualization.
+    Membuat visualisasi heatmap.
     
     Args:
-        matrix: 2D numpy array
-        x_labels: X-axis labels
-        y_labels: Y-axis labels
-        title: Chart title
-        colorscale: Plotly colorscale
-        height: Chart height
+        matrix: Array numpy 2D
+        x_labels: Label sumbu X
+        y_labels: Label sumbu Y
+        title: Judul chart
+        colorscale: Colorscale Plotly
+        height: Tinggi chart
         
     Returns:
-        Plotly Figure
+        Figure Plotly
     """
     fig = go.Figure(data=go.Heatmap(
         z=matrix,
         x=x_labels,
         y=y_labels,
         colorscale=colorscale,
-        hovertemplate="%{x}<br>%{y}<br>Value: %{z:.3f}<extra></extra>",
+        hovertemplate="%{x}<br>%{y}<br>Nilai: %{z:.3f}<extra></extra>",
     ))
     
     fig.update_layout(

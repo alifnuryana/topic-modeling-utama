@@ -1,7 +1,7 @@
 """
-Topic Modeling Dashboard - Main Application
+Dashboard Pemodelan Topik - Aplikasi Utama
 
-Streamlit multi-page dashboard for exploring LDA topic modeling results.
+Dashboard multi-halaman Streamlit untuk mengeksplorasi hasil pemodelan topik LDA.
 """
 
 import streamlit as st
@@ -15,9 +15,9 @@ if str(project_root) not in sys.path:
 
 
 def main():
-    """Main application entry point."""
+    """Titik masuk aplikasi utama."""
     st.set_page_config(
-        page_title="Topic Modeling Dashboard",
+        page_title="Dashboard Pemodelan Topik",
         page_icon="📊",
         layout="wide",
         initial_sidebar_state="expanded",
@@ -52,9 +52,9 @@ def main():
     """, unsafe_allow_html=True)
     
     # Main content
-    st.markdown('<p class="main-header">📊 Topic Modeling Dashboard</p>', unsafe_allow_html=True)
+    st.markdown('<p class="main-header">📊 Dashboard Pemodelan Topik</p>', unsafe_allow_html=True)
     st.markdown(
-        '<p class="sub-header">Explore topics discovered from academic paper metadata using LDA</p>',
+        '<p class="sub-header">Eksplorasi topik yang ditemukan dari metadata paper akademik menggunakan LDA</p>',
         unsafe_allow_html=True
     )
     
@@ -64,24 +64,24 @@ def main():
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        st.markdown("### 🎯 Welcome!")
+        st.markdown("### 🎯 Selamat Datang!")
         st.markdown("""
-        This dashboard provides an interactive interface to explore the results of 
-        **Latent Dirichlet Allocation (LDA)** topic modeling on academic paper metadata.
+        Dashboard ini menyediakan antarmuka interaktif untuk mengeksplorasi hasil 
+        pemodelan topik **Latent Dirichlet Allocation (LDA)** pada metadata paper akademik.
         
-        **Available Features:**
-        - 📊 **Topic Explorer** - Browse and visualize discovered topics
-        - 📄 **Document Browser** - Search and filter documents by topic
-        - 🔍 **Similarity Search** - Find similar documents or analyze new text
-        - 📈 **Trend Analysis** - See how topics evolve over time
-        - 🎯 **Topic Comparison** - Compare topics side by side
-        - ⚙️ **Model Insights** - View model metrics and configuration
+        **Fitur yang Tersedia:**
+        - 📊 **Penjelajah Topik** - Jelajahi dan visualisasikan topik yang ditemukan
+        - 📄 **Peramban Dokumen** - Cari dan filter dokumen berdasarkan topik
+        - 🔍 **Pencarian Kemiripan** - Temukan dokumen serupa atau analisis teks baru
+        - 📈 **Analisis Tren** - Lihat bagaimana topik berubah dari waktu ke waktu
+        - 🎯 **Perbandingan Topik** - Bandingkan topik secara berdampingan
+        - ⚙️ **Wawasan Model** - Lihat metrik dan konfigurasi model
         
-        Use the sidebar navigation to explore different features.
+        Gunakan navigasi sidebar untuk mengeksplorasi berbagai fitur.
         """)
     
     with col2:
-        st.markdown("### 📚 Quick Stats")
+        st.markdown("### 📚 Statistik Cepat")
         
         # Try to load quick stats
         try:
@@ -91,39 +91,39 @@ def main():
             df = load_data()
             
             if model and df is not None:
-                st.metric("Topics", model.model.num_topics)
-                st.metric("Documents", f"{len(df):,}")
+                st.metric("Topik", model.model.num_topics)
+                st.metric("Dokumen", f"{len(df):,}")
                 if model.metadata:
-                    st.metric("Coherence", f"{model.metadata.coherence_score:.4f}")
+                    st.metric("Koherensi", f"{model.metadata.coherence_score:.4f}")
             else:
-                st.info("Model not loaded yet. Run the notebooks first.")
+                st.info("Model belum dimuat. Jalankan notebook terlebih dahulu.")
         except Exception as e:
-            st.info("Run the Jupyter notebooks to train a model first.")
+            st.info("Jalankan Jupyter notebook untuk melatih model terlebih dahulu.")
     
     st.markdown("---")
     
     # Getting started
-    st.markdown("### 🚀 Getting Started")
+    st.markdown("### 🚀 Memulai")
     
     st.markdown("""
-    If you haven't trained a model yet, follow these steps:
+    Jika Anda belum melatih model, ikuti langkah-langkah berikut:
     
-    1. **Install dependencies**: `uv sync`
-    2. **Run notebooks** in order:
-       - `01_data_collection.ipynb` - Harvest data
-       - `01b_eda_raw_data.ipynb` - Explore raw data
-       - `02_data_cleaning.ipynb` - Clean the data
-       - `02b_eda_clean_data.ipynb` - Explore cleaned data
-       - `03_preprocessing.ipynb` - Preprocess text
-       - `04_lda_modeling.ipynb` - Train LDA model
-       - `05_analysis_visualization.ipynb` - Generate visualizations
-    3. **Return to this dashboard** to explore results interactively!
+    1. **Instal dependensi**: `uv sync`
+    2. **Jalankan notebook** secara berurutan:
+       - `01_data_collection.ipynb` - Mengumpulkan data
+       - `01b_eda_raw_data.ipynb` - Eksplorasi data mentah
+       - `02_data_cleaning.ipynb` - Membersihkan data
+       - `02b_eda_clean_data.ipynb` - Eksplorasi data bersih
+       - `03_preprocessing.ipynb` - Preprocessing teks
+       - `04_lda_modeling.ipynb` - Melatih model LDA
+       - `05_analysis_visualization.ipynb` - Membuat visualisasi
+    3. **Kembali ke dashboard ini** untuk mengeksplorasi hasil secara interaktif!
     """)
     
     # Footer
     st.markdown("---")
     st.markdown(
-        "<p style='text-align: center; color: #888;'>Topic Modeling Dashboard • Built with Streamlit</p>",
+        "<p style='text-align: center; color: #888;'>Dashboard Pemodelan Topik • Dibuat dengan Streamlit</p>",
         unsafe_allow_html=True
     )
 

@@ -1,7 +1,7 @@
 """
-Filter components for the dashboard.
+Komponen filter untuk dashboard.
 
-Provides reusable filter widgets for Streamlit.
+Menyediakan widget filter yang dapat digunakan kembali untuk Streamlit.
 """
 
 from typing import Optional, Tuple
@@ -13,56 +13,56 @@ import streamlit as st
 def topic_selector(
     num_topics: int,
     key: str = "topic_select",
-    label: str = "Select Topic",
+    label: str = "Pilih Topik",
     default: int = 0,
     include_all: bool = False,
 ) -> Optional[int]:
     """
-    Create a topic selector widget.
+    Membuat widget pemilih topik.
     
     Args:
-        num_topics: Total number of topics
-        key: Widget key
-        label: Widget label
-        default: Default topic selection
-        include_all: Include "All Topics" option
+        num_topics: Total jumlah topik
+        key: Key widget
+        label: Label widget
+        default: Pilihan topik default
+        include_all: Sertakan opsi "Semua Topik"
         
     Returns:
-        Selected topic ID or None if "All" selected
+        ID topik terpilih atau None jika "Semua" dipilih
     """
     options = list(range(num_topics))
     
     if include_all:
-        options = ["All Topics"] + options
+        options = ["Semua Topik"] + options
         
     selection = st.selectbox(
         label,
         options=options,
         index=default if not include_all else default + 1,
         key=key,
-        format_func=lambda x: f"Topic {x}" if isinstance(x, int) else x,
+        format_func=lambda x: f"Topik {x}" if isinstance(x, int) else x,
     )
     
-    return None if selection == "All Topics" else selection
+    return None if selection == "Semua Topik" else selection
 
 
 def multi_topic_selector(
     num_topics: int,
     key: str = "multi_topic_select",
-    label: str = "Select Topics",
+    label: str = "Pilih Topik",
     default: Optional[list[int]] = None,
 ) -> list[int]:
     """
-    Create a multi-topic selector widget.
+    Membuat widget pemilih multi-topik.
     
     Args:
-        num_topics: Total number of topics
-        key: Widget key
-        label: Widget label
-        default: Default selections
+        num_topics: Total jumlah topik
+        key: Key widget
+        label: Label widget
+        default: Pilihan default
         
     Returns:
-        List of selected topic IDs
+        Daftar ID topik terpilih
     """
     options = list(range(num_topics))
     default = default or options[:3]  # Default to first 3
@@ -72,7 +72,7 @@ def multi_topic_selector(
         options=options,
         default=default,
         key=key,
-        format_func=lambda x: f"Topic {x}",
+        format_func=lambda x: f"Topik {x}",
     )
     
     return selection
@@ -82,19 +82,19 @@ def date_range_selector(
     min_year: int,
     max_year: int,
     key: str = "date_range",
-    label: str = "Select Year Range",
+    label: str = "Pilih Rentang Tahun",
 ) -> Tuple[int, int]:
     """
-    Create a year range slider.
+    Membuat slider rentang tahun.
     
     Args:
-        min_year: Minimum year
-        max_year: Maximum year
-        key: Widget key
-        label: Widget label
+        min_year: Tahun minimum
+        max_year: Tahun maksimum
+        key: Key widget
+        label: Label widget
         
     Returns:
-        Tuple of (start_year, end_year)
+        Tuple (tahun_awal, tahun_akhir)
     """
     return st.slider(
         label,
@@ -107,19 +107,19 @@ def date_range_selector(
 
 def search_input(
     key: str = "search",
-    label: str = "Search",
-    placeholder: str = "Enter search terms...",
+    label: str = "Cari",
+    placeholder: str = "Masukkan kata pencarian...",
 ) -> str:
     """
-    Create a search input widget.
+    Membuat widget input pencarian.
     
     Args:
-        key: Widget key
-        label: Widget label
-        placeholder: Input placeholder
+        key: Key widget
+        label: Label widget
+        placeholder: Placeholder input
         
     Returns:
-        Search query string
+        String query pencarian
     """
     return st.text_input(
         label,
@@ -130,25 +130,25 @@ def search_input(
 
 def probability_slider(
     key: str = "prob_threshold",
-    label: str = "Minimum Topic Probability",
+    label: str = "Probabilitas Topik Minimum",
     default: float = 0.1,
     min_value: float = 0.0,
     max_value: float = 1.0,
     step: float = 0.05,
 ) -> float:
     """
-    Create a probability threshold slider.
+    Membuat slider threshold probabilitas.
     
     Args:
-        key: Widget key
-        label: Widget label
-        default: Default value
-        min_value: Minimum value
-        max_value: Maximum value
-        step: Step size
+        key: Key widget
+        label: Label widget
+        default: Nilai default
+        min_value: Nilai minimum
+        max_value: Nilai maksimum
+        step: Ukuran langkah
         
     Returns:
-        Selected probability threshold
+        Threshold probabilitas terpilih
     """
     return st.slider(
         label,
@@ -162,21 +162,21 @@ def probability_slider(
 
 def num_results_selector(
     key: str = "num_results",
-    label: str = "Number of Results",
+    label: str = "Jumlah Hasil",
     options: list[int] = [5, 10, 20, 50, 100],
     default_index: int = 1,
 ) -> int:
     """
-    Create a number of results selector.
+    Membuat pemilih jumlah hasil.
     
     Args:
-        key: Widget key
-        label: Widget label
-        options: List of options
-        default_index: Default selection index
+        key: Key widget
+        label: Label widget
+        options: Daftar opsi
+        default_index: Indeks pilihan default
         
     Returns:
-        Selected number
+        Jumlah terpilih
     """
     return st.selectbox(
         label,
@@ -189,20 +189,20 @@ def num_results_selector(
 def sort_selector(
     options: dict[str, str],
     key: str = "sort_by",
-    label: str = "Sort By",
+    label: str = "Urutkan Berdasarkan",
     default_index: int = 0,
 ) -> str:
     """
-    Create a sort by selector.
+    Membuat pemilih pengurutan.
     
     Args:
-        options: Dict of display_name -> column_name
-        key: Widget key
-        label: Widget label
-        default_index: Default selection index
+        options: Dict dari nama_tampilan -> nama_kolom
+        key: Key widget
+        label: Label widget
+        default_index: Indeks pilihan default
         
     Returns:
-        Selected column name
+        Nama kolom terpilih
     """
     display_names = list(options.keys())
     

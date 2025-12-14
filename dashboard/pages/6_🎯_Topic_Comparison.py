@@ -1,5 +1,5 @@
 """
-Topic Comparison page for the Topic Modeling Dashboard.
+Halaman Perbandingan Topik untuk Dashboard Pemodelan Topik.
 """
 
 import streamlit as st
@@ -21,13 +21,13 @@ from dashboard.components.charts import (
 from dashboard.components.filters import topic_selector
 
 st.set_page_config(
-    page_title="Topic Comparison - Topic Modeling",
+    page_title="Perbandingan Topik - Pemodelan Topik",
     page_icon="🎯",
     layout="wide",
 )
 
-st.title("🎯 Topic Comparison")
-st.markdown("Compare topics side by side to understand their similarities and differences.")
+st.title("🎯 Perbandingan Topik")
+st.markdown("Bandingkan topik secara berdampingan untuk memahami persamaan dan perbedaannya.")
 st.markdown("---")
 
 # Load model
@@ -43,28 +43,28 @@ num_topics = model.model.num_topics
 
 # Sidebar
 with st.sidebar:
-    st.header("Select Topics to Compare")
+    st.header("Pilih Topik untuk Dibandingkan")
     
     topic_a = st.selectbox(
-        "Topic A",
+        "Topik A",
         options=list(range(num_topics)),
         index=0,
-        format_func=lambda x: f"Topic {x}",
+        format_func=lambda x: f"Topik {x}",
         key="compare_topic_a",
     )
     
     topic_b = st.selectbox(
-        "Topic B",
+        "Topik B",
         options=list(range(num_topics)),
         index=min(1, num_topics - 1),
-        format_func=lambda x: f"Topic {x}",
+        format_func=lambda x: f"Topik {x}",
         key="compare_topic_b",
     )
     
     st.markdown("---")
     
     num_words = st.slider(
-        "Number of Words",
+        "Jumlah Kata",
         min_value=5,
         max_value=20,
         value=10,
@@ -76,10 +76,10 @@ topic_a_words = model.get_topic_words(topic_a, num_words)
 topic_b_words = model.get_topic_words(topic_b, num_words)
 
 # Main comparison
-tab1, tab2, tab3 = st.tabs(["📊 Word Comparison", "☁️ Word Clouds", "🔗 Overlap Analysis"])
+tab1, tab2, tab3 = st.tabs(["📊 Perbandingan Kata", "☁️ Word Cloud", "🔗 Analisis Tumpang Tindih"])
 
 with tab1:
-    st.subheader("Side-by-Side Comparison")
+    st.subheader("Perbandingan Berdampingan")
     
     # Comparison chart
     fig = create_topic_comparison_chart(
@@ -97,42 +97,42 @@ with tab1:
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown(f"### Topic {topic_a} Words")
+        st.markdown(f"### Kata Topik {topic_a}")
         
         words_a_df = pd.DataFrame({
-            "Rank": range(1, len(topic_a_words) + 1),
-            "Word": [w for w, _ in topic_a_words],
-            "Weight": [f"{w:.4f}" for _, w in topic_a_words],
+            "Peringkat": range(1, len(topic_a_words) + 1),
+            "Kata": [w for w, _ in topic_a_words],
+            "Bobot": [f"{w:.4f}" for _, w in topic_a_words],
         })
         st.dataframe(words_a_df, hide_index=True, use_container_width=True)
     
     with col2:
-        st.markdown(f"### Topic {topic_b} Words")
+        st.markdown(f"### Kata Topik {topic_b}")
         
         words_b_df = pd.DataFrame({
-            "Rank": range(1, len(topic_b_words) + 1),
-            "Word": [w for w, _ in topic_b_words],
-            "Weight": [f"{w:.4f}" for _, w in topic_b_words],
+            "Peringkat": range(1, len(topic_b_words) + 1),
+            "Kata": [w for w, _ in topic_b_words],
+            "Bobot": [f"{w:.4f}" for _, w in topic_b_words],
         })
         st.dataframe(words_b_df, hide_index=True, use_container_width=True)
 
 with tab2:
-    st.subheader("Word Clouds")
+    st.subheader("Word Cloud")
     
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown(f"### Topic {topic_a}")
+        st.markdown(f"### Topik {topic_a}")
         wc_a = create_wordcloud_figure(topic_a_words, colormap="Blues")
         st.image(f"data:image/png;base64,{wc_a}", use_container_width=True)
     
     with col2:
-        st.markdown(f"### Topic {topic_b}")
+        st.markdown(f"### Topik {topic_b}")
         wc_b = create_wordcloud_figure(topic_b_words, colormap="Oranges")
         st.image(f"data:image/png;base64,{wc_b}", use_container_width=True)
 
 with tab3:
-    st.subheader("Overlap Analysis")
+    st.subheader("Analisis Tumpang Tindih")
     
     if analyzer:
         try:
@@ -143,13 +143,13 @@ with tab3:
             
             with col1:
                 st.metric(
-                    "Jaccard Similarity",
+                    "Kemiripan Jaccard",
                     f"{overlap['jaccard_similarity']:.3f}",
                 )
             
             with col2:
                 st.metric(
-                    "Shared Words",
+                    "Kata Bersama",
                     len(overlap['shared_words']),
                 )
             
@@ -158,7 +158,7 @@ with tab3:
                 distance_matrix = analyzer.compute_topic_distance_matrix()
                 distance = distance_matrix[topic_a, topic_b]
                 st.metric(
-                    "JS Distance",
+                    "Jarak JS",
                     f"{distance:.3f}",
                 )
             
@@ -168,29 +168,29 @@ with tab3:
             col1, col2, col3 = st.columns(3)
             
             with col1:
-                st.markdown(f"**🟢 Shared Words ({len(overlap['shared_words'])})**")
+                st.markdown(f"**🟢 Kata Bersama ({len(overlap['shared_words'])})**")
                 if overlap['shared_words']:
                     for word in overlap['shared_words'][:10]:
                         st.write(f"• {word}")
                 else:
-                    st.info("No shared words")
+                    st.info("Tidak ada kata bersama")
             
             with col2:
-                st.markdown(f"**🔵 Unique to Topic {topic_a} ({len(overlap['unique_to_a'])})**")
+                st.markdown(f"**🔵 Unik di Topik {topic_a} ({len(overlap['unique_to_a'])})**")
                 for word in overlap['unique_to_a'][:10]:
                     st.write(f"• {word}")
             
             with col3:
-                st.markdown(f"**🟠 Unique to Topic {topic_b} ({len(overlap['unique_to_b'])})**")
+                st.markdown(f"**🟠 Unik di Topik {topic_b} ({len(overlap['unique_to_b'])})**")
                 for word in overlap['unique_to_b'][:10]:
                     st.write(f"• {word}")
                     
         except Exception as e:
-            st.error(f"Error computing overlap: {e}")
+            st.error(f"Error menghitung tumpang tindih: {e}")
 
 # Topic Distance Matrix
 st.markdown("---")
-st.subheader("📊 Topic Distance Matrix")
+st.subheader("📊 Matriks Jarak Topik")
 
 try:
     if analyzer:
@@ -202,7 +202,7 @@ try:
             distance_matrix,
             labels,
             labels,
-            title="Topic Distance (Jensen-Shannon)",
+            title="Jarak Topik (Jensen-Shannon)",
             colorscale="RdYlGn_r",
             height=500,
         )
@@ -210,18 +210,18 @@ try:
         
         # Interpretation
         st.markdown("""
-        **How to interpret:**
-        - **Lower values** (green): Topics are similar
-        - **Higher values** (red): Topics are different
-        - **Diagonal** is always 0 (topic compared to itself)
+        **Cara membaca:**
+        - **Nilai rendah** (hijau): Topik mirip
+        - **Nilai tinggi** (merah): Topik berbeda
+        - **Diagonal** selalu 0 (topik dibandingkan dengan dirinya sendiri)
         """)
         
 except Exception as e:
-    st.error(f"Error computing distance matrix: {e}")
+    st.error(f"Error menghitung matriks jarak: {e}")
 
 # Document comparison
 st.markdown("---")
-st.subheader("📚 Document Overlap")
+st.subheader("📚 Tumpang Tindih Dokumen")
 
 if df is not None:
     try:
@@ -229,7 +229,7 @@ if df is not None:
         
         with col1:
             min_prob = st.slider(
-                "Min probability to count as dominant",
+                "Probabilitas minimum untuk dihitung sebagai dominan",
                 min_value=0.1,
                 max_value=0.5,
                 value=0.3,
@@ -252,20 +252,20 @@ if df is not None:
             col1, col2, col3 = st.columns(3)
             
             with col1:
-                st.metric(f"Topic {topic_a} Docs", len(docs_a))
+                st.metric(f"Dokumen Topik {topic_a}", len(docs_a))
             
             with col2:
-                st.metric(f"Topic {topic_b} Docs", len(docs_b))
+                st.metric(f"Dokumen Topik {topic_b}", len(docs_b))
             
             with col3:
-                st.metric("Shared Docs", len(docs_both))
+                st.metric("Dokumen Bersama", len(docs_both))
             
             # Venn diagram-like display
             st.markdown(f"""
-            - **Only Topic {topic_a}**: {len(docs_only_a)} documents
-            - **Only Topic {topic_b}**: {len(docs_only_b)} documents
-            - **Both Topics**: {len(docs_both)} documents
+            - **Hanya Topik {topic_a}**: {len(docs_only_a)} dokumen
+            - **Hanya Topik {topic_b}**: {len(docs_only_b)} dokumen
+            - **Kedua Topik**: {len(docs_both)} dokumen
             """)
             
     except Exception as e:
-        st.warning(f"Could not compute document overlap: {e}")
+        st.warning(f"Tidak dapat menghitung tumpang tindih dokumen: {e}")

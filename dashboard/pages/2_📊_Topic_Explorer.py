@@ -1,5 +1,5 @@
 """
-Topic Explorer page for the Topic Modeling Dashboard.
+Halaman Penjelajah Topik untuk Dashboard Pemodelan Topik.
 """
 
 import streamlit as st
@@ -22,13 +22,13 @@ from dashboard.components.charts import (
 from dashboard.components.filters import topic_selector
 
 st.set_page_config(
-    page_title="Topic Explorer - Topic Modeling",
+    page_title="Penjelajah Topik - Pemodelan Topik",
     page_icon="📊",
     layout="wide",
 )
 
-st.title("📊 Topic Explorer")
-st.markdown("Explore the discovered topics, view word clouds, and analyze topic content.")
+st.title("📊 Penjelajah Topik")
+st.markdown("Eksplorasi topik yang ditemukan, lihat word cloud, dan analisis konten topik.")
 st.markdown("---")
 
 # Load model
@@ -44,17 +44,17 @@ num_topics = model.model.num_topics
 
 # Sidebar
 with st.sidebar:
-    st.header("Options")
+    st.header("Opsi")
     
     selected_topic = topic_selector(
         num_topics,
         key="explorer_topic",
-        label="Select Topic to Explore",
+        label="Pilih Topik untuk Dijelajahi",
         include_all=False,
     )
     
     num_words = st.slider(
-        "Number of Words",
+        "Jumlah Kata",
         min_value=5,
         max_value=30,
         value=15,
@@ -62,10 +62,10 @@ with st.sidebar:
     )
 
 # Main content
-tab1, tab2, tab3 = st.tabs(["📈 Topic Overview", "☁️ Word Cloud", "🔤 Word Details"])
+tab1, tab2, tab3 = st.tabs(["📈 Ringkasan Topik", "☁️ Word Cloud", "🔤 Detail Kata"])
 
 with tab1:
-    st.subheader("Topic Prevalence")
+    st.subheader("Prevalensi Topik")
     
     if analyzer:
         try:
@@ -74,7 +74,7 @@ with tab1:
             st.plotly_chart(fig, use_container_width=True)
             
             # Summary stats
-            st.markdown("### Topic Summary")
+            st.markdown("### Ringkasan Topik")
             
             cols = st.columns(4)
             for i, row in prevalence.iterrows():
@@ -85,23 +85,23 @@ with tab1:
                     num_dominant = int(row['num_dominant'])
                     
                     st.metric(
-                        f"Topic {topic_id}",
+                        f"Topik {topic_id}",
                         f"{mean_prob:.3f}",
-                        f"{num_dominant} docs",
+                        f"{num_dominant} dok",
                     )
         except Exception as e:
-            st.error(f"Error computing prevalence: {e}")
+            st.error(f"Error menghitung prevalensi: {e}")
     
     # All topics list
-    st.markdown("### All Topics")
+    st.markdown("### Semua Topik")
     
     topics = model.get_topics(num_words=8)
     for topic in topics:
-        with st.expander(f"Topic {topic.topic_id}: {', '.join(topic.top_words[:5])}"):
-            st.write(f"**Top words**: {', '.join(topic.top_words)}")
+        with st.expander(f"Topik {topic.topic_id}: {', '.join(topic.top_words[:5])}"):
+            st.write(f"**Kata teratas**: {', '.join(topic.top_words)}")
 
 with tab2:
-    st.subheader(f"Word Cloud - Topic {selected_topic}")
+    st.subheader(f"Word Cloud - Topik {selected_topic}")
     
     # Get word weights
     words = model.get_topic_words(selected_topic, num_words=50)
@@ -111,7 +111,7 @@ with tab2:
         wc_base64 = create_wordcloud_figure(words)
         st.image(f"data:image/png;base64,{wc_base64}", use_container_width=True)
     else:
-        st.info("No words found for this topic")
+        st.info("Tidak ada kata yang ditemukan untuk topik ini")
     
     # Color options
     st.markdown("---")
@@ -119,22 +119,22 @@ with tab2:
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown(f"**Topic {selected_topic} Summary**")
+        st.markdown(f"**Ringkasan Topik {selected_topic}**")
         topic_info = topics[selected_topic]
-        st.write(f"Top words: {', '.join(topic_info.top_words[:10])}")
+        st.write(f"Kata teratas: {', '.join(topic_info.top_words[:10])}")
     
     with col2:
         if analyzer and df is not None:
             try:
                 prevalence = analyzer.compute_topic_prevalence()
                 topic_prev = prevalence[prevalence['topic_id'] == selected_topic].iloc[0]
-                st.metric("Mean Probability", f"{topic_prev['mean_probability']:.4f}")
-                st.metric("Documents (Dominant)", int(topic_prev['num_dominant']))
+                st.metric("Probabilitas Rata-rata", f"{topic_prev['mean_probability']:.4f}")
+                st.metric("Dokumen (Dominan)", int(topic_prev['num_dominant']))
             except:
                 pass
 
 with tab3:
-    st.subheader(f"Word Details - Topic {selected_topic}")
+    st.subheader(f"Detail Kata - Topik {selected_topic}")
     
     # Get words with weights
     words = model.get_topic_words(selected_topic, num_words=num_words)
@@ -152,21 +152,21 @@ with tab3:
         st.plotly_chart(fig, use_container_width=True)
         
         # Table
-        st.markdown("### Word Weights Table")
+        st.markdown("### Tabel Bobot Kata")
         
         import pandas as pd
         word_df = pd.DataFrame({
-            "Rank": range(1, len(words) + 1),
-            "Word": word_list,
-            "Weight": weight_list,
+            "Peringkat": range(1, len(words) + 1),
+            "Kata": word_list,
+            "Bobot": weight_list,
         })
         st.dataframe(word_df, use_container_width=True, hide_index=True)
     else:
-        st.info("No words found for this topic")
+        st.info("Tidak ada kata yang ditemukan untuk topik ini")
 
 # pyLDAvis section
 st.markdown("---")
-st.subheader("📊 Interactive Topic Visualization (pyLDAvis)")
+st.subheader("📊 Visualisasi Topik Interaktif (pyLDAvis)")
 
 try:
     from src.config import get_settings
@@ -179,6 +179,6 @@ try:
         
         st.components.v1.html(html_content, height=800, scrolling=True)
     else:
-        st.info("pyLDAvis visualization not found. Run the 05_analysis_visualization notebook to generate it.")
+        st.info("Visualisasi pyLDAvis tidak ditemukan. Jalankan notebook 05_analysis_visualization untuk membuatnya.")
 except Exception as e:
-    st.warning(f"Could not load pyLDAvis: {e}")
+    st.warning(f"Tidak dapat memuat pyLDAvis: {e}")

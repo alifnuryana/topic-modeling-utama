@@ -1,7 +1,7 @@
 """
-Dashboard utility functions.
+Fungsi utilitas dashboard.
 
-Provides caching and loading utilities for the Streamlit dashboard.
+Menyediakan utilitas caching dan loading untuk dashboard Streamlit.
 """
 
 import pickle
@@ -26,20 +26,20 @@ from src.visualizations import TopicVisualizer
 
 @st.cache_resource
 def load_model() -> Optional[LDATopicModel]:
-    """Load the trained LDA model with caching."""
+    """Memuat model LDA yang telah dilatih dengan caching."""
     try:
         settings = get_settings()
         model = LDATopicModel(settings)
         model.load()
         return model
     except Exception as e:
-        st.error(f"Error loading model: {e}")
+        st.error(f"Error memuat model: {e}")
         return None
 
 
 @st.cache_data
 def load_data() -> Optional[pd.DataFrame]:
-    """Load the topic-document matrix with caching."""
+    """Memuat matriks topik-dokumen dengan caching."""
     try:
         settings = get_settings()
         data_path = settings.processed_data_dir / settings.topic_document_matrix_file
@@ -56,13 +56,13 @@ def load_data() -> Optional[pd.DataFrame]:
         
         return None
     except Exception as e:
-        st.error(f"Error loading data: {e}")
+        st.error(f"Error memuat data: {e}")
         return None
 
 
 @st.cache_data
 def load_processed_docs() -> Optional[list]:
-    """Load processed documents with caching."""
+    """Memuat dokumen terproses dengan caching."""
     try:
         settings = get_settings()
         corpus_path = settings.processed_data_dir / settings.processed_corpus_file
@@ -74,13 +74,13 @@ def load_processed_docs() -> Optional[list]:
         
         return None
     except Exception as e:
-        st.error(f"Error loading documents: {e}")
+        st.error(f"Error memuat dokumen: {e}")
         return None
 
 
 @st.cache_resource
 def load_preprocessor() -> Optional[IndonesianPreprocessor]:
-    """Load the preprocessor with caching."""
+    """Memuat preprocessor dengan caching."""
     try:
         settings = get_settings()
         preprocessor_path = settings.processed_data_dir / 'preprocessor.pkl'
@@ -93,13 +93,13 @@ def load_preprocessor() -> Optional[IndonesianPreprocessor]:
         # Return a new preprocessor if saved one doesn't exist
         return IndonesianPreprocessor(settings)
     except Exception as e:
-        st.error(f"Error loading preprocessor: {e}")
+        st.error(f"Error memuat preprocessor: {e}")
         return None
 
 
 @st.cache_resource
 def get_analyzer(_model: LDATopicModel) -> Optional[TopicAnalyzer]:
-    """Get topic analyzer instance."""
+    """Mendapatkan instance topic analyzer."""
     try:
         settings = get_settings()
         analyzer = TopicAnalyzer(_model, settings)
@@ -117,19 +117,19 @@ def get_analyzer(_model: LDATopicModel) -> Optional[TopicAnalyzer]:
         
         return analyzer
     except Exception as e:
-        st.error(f"Error creating analyzer: {e}")
+        st.error(f"Error membuat analyzer: {e}")
         return None
 
 
 @st.cache_resource
 def get_visualizer(_model: LDATopicModel) -> TopicVisualizer:
-    """Get topic visualizer instance."""
+    """Mendapatkan instance topic visualizer."""
     settings = get_settings()
     return TopicVisualizer(_model, settings)
 
 
 def get_topic_colors(num_topics: int) -> list:
-    """Get a list of colors for topics."""
+    """Mendapatkan daftar warna untuk topik."""
     import plotly.colors as pc
     
     if num_topics <= 10:
@@ -144,30 +144,30 @@ def get_topic_colors(num_topics: int) -> list:
 
 
 def format_topic_label(topic_id: int, words: list, max_words: int = 5) -> str:
-    """Format a topic label from its top words."""
+    """Format label topik dari kata-kata teratasnya."""
     word_str = ", ".join(words[:max_words])
-    return f"Topic {topic_id}: {word_str}"
+    return f"Topik {topic_id}: {word_str}"
 
 
 def truncate_text(text: str, max_length: int = 100) -> str:
-    """Truncate text with ellipsis."""
+    """Memotong teks dengan elipsis."""
     if len(text) <= max_length:
         return text
     return text[:max_length] + "..."
 
 
 def check_model_loaded() -> bool:
-    """Check if model is loaded and show message if not."""
+    """Memeriksa apakah model sudah dimuat dan menampilkan pesan jika belum."""
     model = load_model()
     
     if model is None:
-        st.warning("⚠️ Model not loaded. Please run the notebooks first to train a model.")
+        st.warning("⚠️ Model belum dimuat. Silakan jalankan notebook terlebih dahulu untuk melatih model.")
         st.info("""
-        **To train a model:**
-        1. Run `01_data_collection.ipynb` to harvest data
-        2. Run `02_data_cleaning.ipynb` to clean the data
-        3. Run `03_preprocessing.ipynb` to preprocess text
-        4. Run `04_lda_modeling.ipynb` to train the LDA model
+        **Untuk melatih model:**
+        1. Jalankan `01_data_collection.ipynb` untuk mengumpulkan data
+        2. Jalankan `02_data_cleaning.ipynb` untuk membersihkan data
+        3. Jalankan `03_preprocessing.ipynb` untuk preprocessing teks
+        4. Jalankan `04_lda_modeling.ipynb` untuk melatih model LDA
         """)
         return False
     

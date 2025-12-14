@@ -1,5 +1,5 @@
 """
-Model Insights page for the Topic Modeling Dashboard.
+Halaman Wawasan Model untuk Dashboard Pemodelan Topik.
 """
 
 import streamlit as st
@@ -18,13 +18,13 @@ if str(project_root) not in sys.path:
 from dashboard.utils import load_model, load_data, load_processed_docs, check_model_loaded
 
 st.set_page_config(
-    page_title="Model Insights - Topic Modeling",
+    page_title="Wawasan Model - Pemodelan Topik",
     page_icon="⚙️",
     layout="wide",
 )
 
-st.title("⚙️ Model Insights")
-st.markdown("View model configuration, metrics, and diagnostics.")
+st.title("⚙️ Wawasan Model")
+st.markdown("Lihat konfigurasi model, metrik, dan diagnostik.")
 st.markdown("---")
 
 # Load model
@@ -36,7 +36,7 @@ df = load_data()
 processed_docs = load_processed_docs()
 
 # Model Metadata
-st.subheader("📊 Model Metadata")
+st.subheader("📊 Metadata Model")
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -44,26 +44,26 @@ if model.metadata:
     meta = model.metadata
     
     with col1:
-        st.metric("Number of Topics", meta.num_topics)
-        st.metric("Documents", f"{meta.num_documents:,}")
+        st.metric("Jumlah Topik", meta.num_topics)
+        st.metric("Dokumen", f"{meta.num_documents:,}")
     
     with col2:
-        st.metric("Vocabulary Size", f"{meta.vocabulary_size:,}")
-        st.metric("Coherence Score", f"{meta.coherence_score:.4f}")
+        st.metric("Ukuran Kosakata", f"{meta.vocabulary_size:,}")
+        st.metric("Skor Koherensi", f"{meta.coherence_score:.4f}")
     
     with col3:
-        st.metric("Training Passes", meta.passes)
-        st.metric("Iterations", meta.iterations)
+        st.metric("Passes Pelatihan", meta.passes)
+        st.metric("Iterasi", meta.iterations)
     
     with col4:
         st.metric("Alpha", meta.alpha)
         st.metric("Eta", meta.eta if meta.eta else "auto")
 else:
-    st.warning("Model metadata not available")
+    st.warning("Metadata model tidak tersedia")
 
 # Training Configuration
 st.markdown("---")
-st.subheader("🔧 Training Configuration")
+st.subheader("🔧 Konfigurasi Pelatihan")
 
 try:
     from src.config import get_settings
@@ -72,7 +72,7 @@ try:
     config_col1, config_col2 = st.columns(2)
     
     with config_col1:
-        st.markdown("**LDA Parameters:**")
+        st.markdown("**Parameter LDA:**")
         st.json({
             "num_topics": settings.lda_num_topics,
             "passes": settings.lda_passes,
@@ -85,7 +85,7 @@ try:
         })
     
     with config_col2:
-        st.markdown("**Dictionary Filters:**")
+        st.markdown("**Filter Kamus:**")
         st.json({
             "no_below": settings.dict_no_below,
             "no_above": settings.dict_no_above,
@@ -103,17 +103,17 @@ try:
         })
         
 except Exception as e:
-    st.warning(f"Could not load settings: {e}")
+    st.warning(f"Tidak dapat memuat pengaturan: {e}")
 
 # Vocabulary Analysis
 st.markdown("---")
-st.subheader("📝 Vocabulary Analysis")
+st.subheader("📝 Analisis Kosakata")
 
 if model.dictionary:
     col1, col2 = st.columns([1, 2])
     
     with col1:
-        st.metric("Total Terms", len(model.dictionary))
+        st.metric("Total Istilah", len(model.dictionary))
         
         # Get most frequent terms
         if hasattr(model.dictionary, 'cfs'):
@@ -122,7 +122,7 @@ if model.dictionary:
                 key=lambda x: -x[1]
             )[:20]
             
-            st.markdown("**Top 20 Terms by Frequency:**")
+            st.markdown("**20 Istilah Teratas berdasarkan Frekuensi:**")
             for term_id, freq in sorted_terms[:10]:
                 term = model.dictionary[term_id]
                 st.write(f"• {term}: {freq:,}")
@@ -132,10 +132,10 @@ if model.dictionary:
         if hasattr(model.dictionary, 'cfs') and model.dictionary.cfs:
             freqs = list(model.dictionary.cfs.values())
             
-            st.markdown("**Term Frequency Statistics:**")
+            st.markdown("**Statistik Frekuensi Istilah:**")
             stats_df = pd.DataFrame({
-                "Statistic": ["Min", "Max", "Mean", "Median", "Std"],
-                "Value": [
+                "Statistik": ["Min", "Maks", "Rata-rata", "Median", "Std"],
+                "Nilai": [
                     f"{min(freqs):,}",
                     f"{max(freqs):,}",
                     f"{np.mean(freqs):,.1f}",
@@ -145,11 +145,11 @@ if model.dictionary:
             })
             st.dataframe(stats_df, hide_index=True, use_container_width=True)
 else:
-    st.info("Dictionary not available")
+    st.info("Kamus tidak tersedia")
 
 # Corpus Statistics
 st.markdown("---")
-st.subheader("📚 Corpus Statistics")
+st.subheader("📚 Statistik Korpus")
 
 if processed_docs:
     col1, col2 = st.columns(2)
@@ -158,34 +158,34 @@ if processed_docs:
         total_tokens = sum(len(doc) for doc in processed_docs)
         unique_tokens = len(set(token for doc in processed_docs for token in doc))
         
-        st.metric("Total Documents", len(processed_docs))
-        st.metric("Total Tokens", f"{total_tokens:,}")
-        st.metric("Unique Tokens", f"{unique_tokens:,}")
+        st.metric("Total Dokumen", len(processed_docs))
+        st.metric("Total Token", f"{total_tokens:,}")
+        st.metric("Token Unik", f"{unique_tokens:,}")
     
     with col2:
         doc_lengths = [len(doc) for doc in processed_docs]
         
-        st.metric("Avg Tokens/Document", f"{np.mean(doc_lengths):.1f}")
-        st.metric("Min Document Length", min(doc_lengths))
-        st.metric("Max Document Length", max(doc_lengths))
+        st.metric("Rata-rata Token/Dokumen", f"{np.mean(doc_lengths):.1f}")
+        st.metric("Panjang Dokumen Minimum", min(doc_lengths))
+        st.metric("Panjang Dokumen Maksimum", max(doc_lengths))
 else:
     if df is not None:
-        st.metric("Total Documents", len(df))
+        st.metric("Total Dokumen", len(df))
     else:
-        st.info("Corpus not available")
+        st.info("Korpus tidak tersedia")
 
 # Topic Details
 st.markdown("---")
-st.subheader("📋 Topic Details")
+st.subheader("📋 Detail Topik")
 
 topics = model.get_topics(num_words=15)
 
 topic_data = []
 for topic in topics:
     topic_data.append({
-        "Topic ID": topic.topic_id,
+        "ID Topik": topic.topic_id,
         "Label": topic.label[:50] + "..." if len(topic.label) > 50 else topic.label,
-        "Top Words": ", ".join(topic.top_words[:8]),
+        "Kata Teratas": ", ".join(topic.top_words[:8]),
     })
 
 topic_df = pd.DataFrame(topic_data)
@@ -193,7 +193,7 @@ st.dataframe(topic_df, hide_index=True, use_container_width=True)
 
 # Per-topic metrics
 if model.metadata and df is not None:
-    st.markdown("### Topic Metrics")
+    st.markdown("### Metrik Topik")
     
     metrics_data = []
     for t in range(model.model.num_topics):
@@ -203,11 +203,11 @@ if model.metadata and df is not None:
             dominant = (df.get('dominant_topic', pd.Series()) == t).sum() if 'dominant_topic' in df.columns else 0
             
             metrics_data.append({
-                "Topic": t,
-                "Mean Prob": f"{probs.mean():.4f}",
-                "Std Prob": f"{probs.std():.4f}",
-                "Max Prob": f"{probs.max():.4f}",
-                "Dominant Docs": dominant,
+                "Topik": t,
+                "Prob Rata-rata": f"{probs.mean():.4f}",
+                "Prob Std": f"{probs.std():.4f}",
+                "Prob Maks": f"{probs.max():.4f}",
+                "Dok Dominan": dominant,
             })
     
     if metrics_data:
@@ -216,27 +216,27 @@ if model.metadata and df is not None:
 
 # File Paths
 st.markdown("---")
-st.subheader("📁 File Locations")
+st.subheader("📁 Lokasi File")
 
 try:
     from src.config import get_settings
     settings = get_settings()
     
     files = {
-        "Model directory": str(settings.models_dir),
-        "Processed data": str(settings.processed_data_dir),
-        "Outputs": str(settings.outputs_dir),
+        "Direktori model": str(settings.models_dir),
+        "Data terproses": str(settings.processed_data_dir),
+        "Output": str(settings.outputs_dir),
     }
     
     for name, path in files.items():
         st.markdown(f"**{name}**: `{path}`")
         
 except Exception as e:
-    st.warning(f"Could not load paths: {e}")
+    st.warning(f"Tidak dapat memuat path: {e}")
 
 # Export Options
 st.markdown("---")
-st.subheader("📥 Export Options")
+st.subheader("📥 Opsi Ekspor")
 
 col1, col2, col3 = st.columns(3)
 
@@ -244,9 +244,9 @@ with col1:
     if model.metadata:
         metadata_json = json.dumps(model.metadata.to_dict(), indent=2)
         st.download_button(
-            label="📥 Download Metadata (JSON)",
+            label="📥 Unduh Metadata (JSON)",
             data=metadata_json,
-            file_name="model_metadata.json",
+            file_name="metadata_model.json",
             mime="application/json",
         )
 
@@ -254,17 +254,17 @@ with col2:
     topics_data = [t.to_dict() for t in topics]
     topics_json = json.dumps(topics_data, indent=2)
     st.download_button(
-        label="📥 Download Topics (JSON)",
+        label="📥 Unduh Topik (JSON)",
         data=topics_json,
-        file_name="topics.json",
+        file_name="topik.json",
         mime="application/json",
     )
 
 with col3:
     if df is not None:
         st.download_button(
-            label="📥 Download Full Data (CSV)",
+            label="📥 Unduh Data Lengkap (CSV)",
             data=df.to_csv(index=False),
-            file_name="topic_document_matrix.csv",
+            file_name="matriks_topik_dokumen.csv",
             mime="text/csv",
         )

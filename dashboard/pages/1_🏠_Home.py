@@ -1,5 +1,5 @@
 """
-Home page for the Topic Modeling Dashboard.
+Halaman Beranda untuk Dashboard Pemodelan Topik.
 """
 
 import streamlit as st
@@ -14,12 +14,12 @@ if str(project_root) not in sys.path:
 from dashboard.utils import load_model, load_data, check_model_loaded
 
 st.set_page_config(
-    page_title="Home - Topic Modeling",
+    page_title="Beranda - Pemodelan Topik",
     page_icon="🏠",
     layout="wide",
 )
 
-st.title("🏠 Home")
+st.title("🏠 Beranda")
 st.markdown("---")
 
 # Check if model is loaded
@@ -27,47 +27,47 @@ model = load_model()
 df = load_data()
 
 if model is None:
-    st.warning("⚠️ Model not loaded. Please run the notebooks first to train a model.")
+    st.warning("⚠️ Model belum dimuat. Silakan jalankan notebook terlebih dahulu untuk melatih model.")
     
     st.markdown("""
-    ### Getting Started
+    ### Memulai
     
-    Follow these steps to train a topic model:
+    Ikuti langkah-langkah berikut untuk melatih model topik:
     
-    1. **Install dependencies**: Run `uv sync` in the terminal
-    2. **Run notebooks** in order:
-       - `01_data_collection.ipynb` - Harvest data from repository
-       - `01b_eda_raw_data.ipynb` - Explore raw data
-       - `02_data_cleaning.ipynb` - Clean the data
-       - `02b_eda_clean_data.ipynb` - Explore cleaned data
-       - `03_preprocessing.ipynb` - Preprocess text
-       - `04_lda_modeling.ipynb` - Train LDA model
-       - `05_analysis_visualization.ipynb` - Generate visualizations
-    3. **Return here** to explore the results!
+    1. **Instal dependensi**: Jalankan `uv sync` di terminal
+    2. **Jalankan notebook** secara berurutan:
+       - `01_data_collection.ipynb` - Mengumpulkan data dari repositori
+       - `01b_eda_raw_data.ipynb` - Eksplorasi data mentah
+       - `02_data_cleaning.ipynb` - Membersihkan data
+       - `02b_eda_clean_data.ipynb` - Eksplorasi data bersih
+       - `03_preprocessing.ipynb` - Preprocessing teks
+       - `04_lda_modeling.ipynb` - Melatih model LDA
+       - `05_analysis_visualization.ipynb` - Membuat visualisasi
+    3. **Kembali ke sini** untuk mengeksplorasi hasil!
     """)
 else:
     # Display model info
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
-        st.metric("📊 Topics", model.model.num_topics)
+        st.metric("📊 Topik", model.model.num_topics)
     
     with col2:
         if df is not None:
-            st.metric("📚 Documents", f"{len(df):,}")
+            st.metric("📚 Dokumen", f"{len(df):,}")
     
     with col3:
         if model.metadata:
-            st.metric("📈 Coherence", f"{model.metadata.coherence_score:.4f}")
+            st.metric("📈 Koherensi", f"{model.metadata.coherence_score:.4f}")
     
     with col4:
         if model.metadata:
-            st.metric("📝 Vocabulary", f"{model.metadata.vocabulary_size:,}")
+            st.metric("📝 Kosakata", f"{model.metadata.vocabulary_size:,}")
     
     st.markdown("---")
     
     # Topics overview
-    st.subheader("📋 Topics Overview")
+    st.subheader("📋 Ringkasan Topik")
     
     topics = model.get_topics(num_words=8)
     
@@ -77,40 +77,40 @@ else:
     for i, topic in enumerate(topics):
         with cols[i % 2]:
             words = ", ".join(topic.top_words[:6])
-            st.markdown(f"**Topic {topic.topic_id}**: {words}")
+            st.markdown(f"**Topik {topic.topic_id}**: {words}")
     
     st.markdown("---")
     
     # Quick navigation
-    st.subheader("🚀 Quick Navigation")
+    st.subheader("🚀 Navigasi Cepat")
     
     nav_col1, nav_col2, nav_col3 = st.columns(3)
     
     with nav_col1:
         st.markdown("""
-        **📊 Topic Explorer**
+        **📊 Penjelajah Topik**
         
-        Browse topics, view word clouds, and explore top words.
+        Jelajahi topik, lihat word cloud, dan eksplorasi kata-kata teratas.
         """)
     
     with nav_col2:
         st.markdown("""
-        **📄 Document Browser**
+        **📄 Peramban Dokumen**
         
-        Search and filter documents by topic or keyword.
+        Cari dan filter dokumen berdasarkan topik atau kata kunci.
         """)
     
     with nav_col3:
         st.markdown("""
-        **🔍 Similarity Search**
+        **🔍 Pencarian Kemiripan**
         
-        Find similar documents or analyze new text.
+        Temukan dokumen serupa atau analisis teks baru.
         """)
     
     # Dataset info
     if df is not None:
         st.markdown("---")
-        st.subheader("📊 Dataset Summary")
+        st.subheader("📊 Ringkasan Dataset")
         
         col1, col2 = st.columns(2)
         
@@ -118,17 +118,17 @@ else:
             if 'year' in df.columns:
                 year_min = int(df['year'].min()) if df['year'].notna().any() else "N/A"
                 year_max = int(df['year'].max()) if df['year'].notna().any() else "N/A"
-                st.write(f"**Date Range**: {year_min} - {year_max}")
+                st.write(f"**Rentang Tahun**: {year_min} - {year_max}")
             
             if 'title' in df.columns:
                 avg_title_len = df['title'].str.len().mean()
-                st.write(f"**Avg Title Length**: {avg_title_len:.0f} characters")
+                st.write(f"**Rata-rata Panjang Judul**: {avg_title_len:.0f} karakter")
         
         with col2:
             if 'dominant_topic' in df.columns:
                 most_common_topic = df['dominant_topic'].mode().iloc[0]
-                st.write(f"**Most Common Topic**: Topic {int(most_common_topic)}")
+                st.write(f"**Topik Paling Umum**: Topik {int(most_common_topic)}")
             
             if 'abstract' in df.columns:
                 avg_abstract_len = df['abstract'].str.split().str.len().mean()
-                st.write(f"**Avg Abstract Length**: {avg_abstract_len:.0f} words")
+                st.write(f"**Rata-rata Panjang Abstrak**: {avg_abstract_len:.0f} kata")
